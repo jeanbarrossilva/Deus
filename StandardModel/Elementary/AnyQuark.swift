@@ -18,7 +18,7 @@
 import Foundation
 
 /// ``QuarkLike`` whose flavor information has been erased.
-public struct AnyQuarkLike: Discrete, Quark {
+public struct AnyQuarkLike: Discrete, QuarkLike {
   /// ``Quark`` based on which this one was initialized.
   let base: any QuarkLike
 
