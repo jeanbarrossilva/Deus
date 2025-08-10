@@ -142,11 +142,6 @@
 			path = Deus;
 			sourceTree = "<group>";
 		};
-		4927F3862DD25BC700E368D8 /* DeusUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DeusUITests;
-			sourceTree = "<group>";
-		};
 		494EFBFA2DDF36B100C66063 /* RelativityKit */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = RelativityKit;
@@ -280,7 +275,6 @@
 				4921F2692DD4ECA900393B6F /* Deus.xctestplan */,
 				4927F36C2DD25BC400E368D8 /* Deus.app */,
 				4927F36D2DD25BC400E368D8 /* Deus */,
-				4927F3862DD25BC700E368D8 /* DeusUITests */,
 				4960AB482DDCE34E00EB1410 /* Geometry.framework */,
 				4960AB492DDCE34E00EB1410 /* Geometry */,
 				4960AB502DDCE34E00EB1410 /* GeometryTests.xctest */,
