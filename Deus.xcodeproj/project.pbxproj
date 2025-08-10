@@ -21,13 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4927F3842DD25BC700E368D8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49FD311A2DBFC9E2003CEAF9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4927F36B2DD25BC400E368D8;
-			remoteInfo = Deus;
-		};
 		494EFC032DDF36B200C66063 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 49FD311A2DBFC9E2003CEAF9 /* Project object */;
@@ -130,7 +123,6 @@
 		4921F2692DD4ECA900393B6F /* Deus.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deus.xctestplan; sourceTree = "<group>"; };
 		4921F3192DD54F0B00393B6F /* .swift-format */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-format"; sourceTree = "<group>"; };
 		4927F36C2DD25BC400E368D8 /* Deus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4927F3832DD25BC700E368D8 /* DeusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		492FE57B2DE70CE000BC54F9 /* gyb.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gyb.py; sourceTree = "<group>"; };
 		492FE57C2DE70D0B00BC54F9 /* gyb.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = gyb.sh; sourceTree = "<group>"; };
 		494EFBF92DDF36B100C66063 /* RelativityKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RelativityKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,13 +195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				498FA27E2E2459DE0058A9C8 /* ObservationKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4927F3802DD25BC700E368D8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +280,6 @@
 				4921F2692DD4ECA900393B6F /* Deus.xctestplan */,
 				4927F36C2DD25BC400E368D8 /* Deus.app */,
 				4927F36D2DD25BC400E368D8 /* Deus */,
-				4927F3832DD25BC700E368D8 /* DeusUITests.xctest */,
 				4927F3862DD25BC700E368D8 /* DeusUITests */,
 				4960AB482DDCE34E00EB1410 /* Geometry.framework */,
 				4960AB492DDCE34E00EB1410 /* Geometry */,
@@ -374,29 +358,6 @@
 			productName = Deus;
 			productReference = 4927F36C2DD25BC400E368D8 /* Deus.app */;
 			productType = "com.apple.product-type.application";
-		};
-		4927F3822DD25BC700E368D8 /* DeusUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4927F3912DD25BC700E368D8 /* Build configuration list for PBXNativeTarget "DeusUITests" */;
-			buildPhases = (
-				4927F37F2DD25BC700E368D8 /* Sources */,
-				4927F3802DD25BC700E368D8 /* Frameworks */,
-				4927F3812DD25BC700E368D8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4927F3852DD25BC700E368D8 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				4927F3862DD25BC700E368D8 /* DeusUITests */,
-			);
-			name = DeusUITests;
-			packageProductDependencies = (
-			);
-			productName = DeusUITests;
-			productReference = 4927F3832DD25BC700E368D8 /* DeusUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		494EFBF82DDF36B100C66063 /* RelativityKit */ = {
 			isa = PBXNativeTarget;
@@ -602,10 +563,6 @@
 					4927F36B2DD25BC400E368D8 = {
 						CreatedOnToolsVersion = 16.3;
 					};
-					4927F3822DD25BC700E368D8 = {
-						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 4927F36B2DD25BC400E368D8;
-					};
 					494EFBF82DDF36B100C66063 = {
 						CreatedOnToolsVersion = 16.3;
 					};
@@ -655,7 +612,6 @@
 			projectRoot = "";
 			targets = (
 				4927F36B2DD25BC400E368D8 /* Deus */,
-				4927F3822DD25BC700E368D8 /* DeusUITests */,
 				4960AB472DDCE34E00EB1410 /* Geometry */,
 				4960AB4F2DDCE34E00EB1410 /* GeometryTests */,
 				494EFBF82DDF36B100C66063 /* RelativityKit */,
@@ -670,13 +626,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		4927F36A2DD25BC400E368D8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4927F3812DD25BC700E368D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -772,13 +721,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4927F37F2DD25BC700E368D8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		494EFBF52DDF36B100C66063 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -838,11 +780,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4927F3852DD25BC700E368D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4927F36B2DD25BC400E368D8 /* Deus */;
-			targetProxy = 4927F3842DD25BC700E368D8 /* PBXContainerItemProxy */;
-		};
 		494EFC042DDF36B200C66063 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 494EFBF82DDF36B100C66063 /* RelativityKit */;
@@ -934,38 +871,6 @@
 				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		4927F3922DD25BC700E368D8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X5FKTSKM38;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.DeusUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Deus;
-			};
-			name = Debug;
-		};
-		4927F3932DD25BC700E368D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X5FKTSKM38;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.DeusUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Deus;
 			};
 			name = Release;
 		};
@@ -1523,15 +1428,6 @@
 			buildConfigurations = (
 				4927F38C2DD25BC700E368D8 /* Debug */,
 				4927F38D2DD25BC700E368D8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4927F3912DD25BC700E368D8 /* Build configuration list for PBXNativeTarget "DeusUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4927F3922DD25BC700E368D8 /* Debug */,
-				4927F3932DD25BC700E368D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

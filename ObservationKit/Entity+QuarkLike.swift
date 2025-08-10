@@ -19,6 +19,7 @@ import AppKit
 import RealityKit
 import StandardModel
 
+/// Shape of a quark-like: a sphere.
 private let mesh = MeshResource.generateSphere(radius: 0.2)
 
 extension Entity {

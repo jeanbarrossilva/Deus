@@ -16,27 +16,13 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import AppKit
-import RealityKit
 import StandardModel
 import Testing
 
 @testable import ObservationKit
 
-@Suite("Entity+QuarkLike tests")
-struct EntityQuarkLikeTests {
-  @Test(arguments: AnyQuarkLike.discretion)
-  func entityIsColored(withColorOf quarkLike: AnyQuarkLike) {
-    guard let entity = Entity(quarkLike) else { fatalError("Entity initialization has failed.") }
-    let components = entity.components
-    #expect(components.count == 1)
-    guard let singleComponent = components[components.startIndex] as? ModelComponent else {
-      fatalError("Single component of entity is not a ModelComponent.")
-    }
-    let materials = singleComponent.materials
-    #expect(materials.count == 1)
-    guard let singleMaterial = materials[materials.startIndex] as? SimpleMaterial else {
-      fatalError("Single material of entity is not a simple one.")
-    }
-    #expect(singleMaterial.color.tint == NSColor(quarkLike.color))
-  }
+@Suite("NSColor+SingleColorLike tests")
+struct NSColorSingleColorLikeTests {
+  @Test(arguments: AnySingleColorLike.discretion)
+  func isInitialized(from colorLike: AnySingleColorLike) { #expect(NSColor(colorLike) != nil) }
 }

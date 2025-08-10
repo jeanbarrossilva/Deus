@@ -69,7 +69,7 @@ public struct AnySingleColor: Discrete, SingleColor {
 
   public static var discretion: [Self] = [.init(red), .init(green), .init(blue)]
 
-  init(_ base: some SingleColor) {
+  public init(_ base: some SingleColor) {
     if let base = base as? Self { self = base } else { self.base = base }
   }
 
@@ -92,7 +92,7 @@ public struct AnySingleColorLike: Discrete, SingleColor {
     .init(red), .init(Anti(red)), .init(green), .init(Anti(green)), .init(blue), .init(Anti(blue))
   ]
 
-  init(_ base: any SingleColorLike) {
+  public init(_ base: any SingleColorLike) {
     if let base = base as? Self { self = base } else { self.base = base }
   }
 
