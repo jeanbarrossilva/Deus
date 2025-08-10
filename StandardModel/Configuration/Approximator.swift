@@ -27,9 +27,10 @@ public enum Approximator<Approximation: Comparable> {
   ///
   /// - Parameters:
   ///   - base: Central value based on which the approximation is to be calculated.
-  ///   - statisticalUncertainty: Margin of error resulted from experiments, which considers
-  ///     variation stemming from the behavior of the subject under test. The actual value may
-  ///     fluctuate positively or negatively towards or away from this value.
+  ///   - statisticalUncertainty: Margin of error originated from experiments, which considers
+  ///     variation stemming from the behavior of the subject under test or the conditions to which
+  ///     it was submitted. The actual value may be the result of adding this value — or a fraction
+  ///     of it — to or subtracting it from the `base`.
   ///   - systematicUncertainty: Margin of error from the limitations of the equipment used in the
   ///     experiments or the experiments themselves, with the latter being (probably) because of
   ///     lack of sufficient knowledge regarding the subject under test or the experimentation
@@ -44,3 +45,4 @@ public enum Approximator<Approximation: Comparable> {
     }
   }
 }
+ 
