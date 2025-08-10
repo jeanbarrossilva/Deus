@@ -15,9 +15,25 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+/// Base value for calculating an approximation of the mass of a ``StrangeQuark``.
+private let baseMass = Measurement(value: 95, unit: UnitMass.megaelectronvolt)
+
+/// Statistical uncertainty for calculating an approximation of the mass of a ``StrangeQuark``.
+private let massStatisticalUncertainty = Measurement(value: 5, unit: UnitMass.gigaelectronvolt)
+
+/// Third lightest ``Quark``, with a Lagrangian mass of 95 ± 5 MeV/*c*². Decays to a ``DownQuark``.
+public struct StrangeQuark<Color: SingleColor>: Quark {
+  public let symbol = "s"
+  public let charge = negativeOneThirdOfE
+  public let color: Color
+
+  public init(color: Color) { self.color = color }
+
+  public func getMass(
+    approximatedBy approximator: Approximator<Measurement<UnitMass>>
+  ) -> Measurement<UnitMass> {
+    approximator.approximate(baseMass, massStatisticalUncertainty, .zero)
+  }
+}

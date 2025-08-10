@@ -15,9 +15,18 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+/// Immutable ``Opposable`` with a finite set of describable states in which an instance of it can
+/// be, including both its matter and antimatter variants.
+///
+/// - SeeAlso: ``discretion``
+public protocol Discrete: Opposable {
+  /// Type of the set which contains the discrete values.
+  associatedtype Discretion: Collection<Self>
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+  /// Set of possible states of an instance of this ``Discrete``.
+  ///
+  /// > Note: It is implied that all conforming implementations *do* contain at least one possible
+  /// state. Therefore, it is expected that the returned collection is populated with at least one
+  /// instance.
+  static var discretion: Discretion { get }
+}

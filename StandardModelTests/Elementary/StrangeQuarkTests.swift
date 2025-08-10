@@ -15,9 +15,22 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct StrangeQuarkTests {
+  private let strangeQuark = StrangeQuark(color: red)
+
+  @Test
+  func massApproximatedByBaseIsNinetyFiveMeV() {
+    #expect(
+      strangeQuark.getMass(approximatedBy: .base)
+        == Measurement(value: 95, unit: UnitMass.megaelectronvolt)
+    )
+  }
+
+  @Test
+  func symbolIsS() { #expect(strangeQuark.symbol == "s") }
+}

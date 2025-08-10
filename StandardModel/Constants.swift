@@ -15,9 +15,7 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+/// The speed of light.
+let c = Measurement(value: 299_792_458, unit: UnitSpeed.metersPerSecond)

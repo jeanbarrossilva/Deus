@@ -15,9 +15,37 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
+import Numerics
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct SymmetryTests {
+  @Suite("U1")
+  struct U1Tests {
+    @Test
+    func fieldIsUntransformedWhenUnrotated() {
+      #expect(Complex(2, 4).u1(by: .zero) == Complex(2, 4))
+    }
+
+    @Test(
+      arguments: stride(from: 2, to: 64, by: 2).map {
+        Measurement(value: .pi * $0, unit: UnitAngle.radians)
+      }
+    )
+    func fieldIsUntransformedUponFullTurn(of angle: Measurement<UnitAngle>) {
+      #expect(Complex(2, 4).u1(by: angle).isApproximatelyEqual(to: Complex(2, 4)))
+    }
+
+    @Test
+    func fieldIsTransformedWhenRotatedByNonGroupIdentity() {
+      #expect(
+        Complex(2, 4).u1(by: Measurement(value: 2, unit: UnitAngle.radians)).isApproximatelyEqual(
+          to: Complex(-4.46, 0.15),
+          relativeTolerance: 0.01
+        )
+      )
+    }
+  }
+}

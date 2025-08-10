@@ -15,9 +15,25 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct AntiparticleTests {
+  @Test
+  func chargeIsOpposite() {
+    #expect(Anti(UpQuark(color: red)).charge == Measurement(value: -2 / 3, unit: .elementary))
+  }
+
+  @Test
+  func massIsSameAsOfCounterpart() {
+    let particle = UpQuark(color: red)
+    #expect(
+      Anti(particle).getMass(approximatedBy: .base) == particle.getMass(approximatedBy: .base)
+    )
+  }
+
+  @Test
+  func symbolHasOverbar() { #expect(Anti(UpQuark(color: red)).symbol == "u̅") }
+}

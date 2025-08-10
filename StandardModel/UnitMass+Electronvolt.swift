@@ -15,9 +15,24 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+extension UnitMass {
+  /// Amount in gigaelectronvolts (GeV/*c*²).
+  static let gigaelectronvolt = UnitMass(
+    symbol: "GeV",
+    converter: UnitConverterLinear(coefficient: 5.6095886 * pow(10, 26) / pow(c.value, 2))
+  )
+
+  /// Amount in megaelectronvolts (MeV/*c*²).
+  static let megaelectronvolt = UnitMass(
+    symbol: "MeV",
+    converter: UnitConverterLinear(coefficient: 5.6095886 * pow(10, 29) / pow(c.value, 2))
+  )
+
+  /// Amount in electronvolts (eV/*c*²).
+  static let electronvolt = UnitMass(
+    symbol: "eV",
+    converter: UnitConverterLinear(coefficient: 5.6095886 * pow(10, 35) / pow(c.value, 2))
+  )
+}

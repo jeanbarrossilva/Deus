@@ -15,9 +15,5 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
-
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+/// ``Hadron`` composed by an even amount of ``Quark``s.
+public protocol Meson: Hadron {}

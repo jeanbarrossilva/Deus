@@ -15,9 +15,14 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import AppKit
+import StandardModel
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import ObservationKit
+
+@Suite("NSColor+SingleColorLike tests")
+struct NSColorSingleColorLikeTests {
+  @Test(arguments: AnySingleColorLike.discretion)
+  func isInitialized(from colorLike: AnySingleColorLike) { #expect(NSColor(colorLike) != nil) }
+}

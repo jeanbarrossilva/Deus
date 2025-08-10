@@ -15,9 +15,28 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct AnySingleColorTests {
+  @Test(arguments: [AnySingleColor(red), .init(green), .init(blue)])
+  func allKnownColorsAreIncludedInDiscretion(_ singleColor: AnySingleColor) {
+    #expect(
+      AnySingleColor.discretion.contains(where: { discreteSingleColor in
+        discreteSingleColor == singleColor
+      })
+    )
+  }
+
+  @Test(arguments: AnySingleColor.discretion)
+  func isBaseColor(_ color: AnySingleColor) {
+    if color.base is Red {
+      #expect(color.is(Red.self))
+    } else if color.base is Green {
+      #expect(color.is(Green.self))
+    } else if color.base is Blue {
+      #expect(color.is(Blue.self))
+    }
+  }
+}

@@ -15,9 +15,17 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct AnticolorTests {
+  @Test
+  func redIsCounterpartOfAntired() { #expect(Anti(red).counterpart === red) }
+
+  @Test
+  func greenIsCounterpartOfAntigreen() { #expect(Anti(green).counterpart === green) }
+
+  @Test
+  func blueIsCounterpartOfAntiblue() { #expect(Anti(blue).counterpart === blue) }
+}

@@ -1,5 +1,5 @@
 // ===-------------------------------------------------------------------------------------------===
-// Copyright © 2025 Deus
+// Copyright © 2025 ObservationKit
 //
 // This file is part of the Deus open-source project.
 //
@@ -14,10 +14,3 @@
 // You should have received a copy of the GNU General Public License along with this program. If
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
-
-import ObservationKit
-import SwiftUI
-
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }

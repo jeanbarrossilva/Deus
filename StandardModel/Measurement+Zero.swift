@@ -15,9 +15,19 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+extension Measurement where UnitType == UnitAngle {
+  /// An angle of 0º.
+  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+}
+
+extension Measurement where UnitType == UnitElectricCharge {
+  /// An electric charge of 0 C.
+  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+}
+
+extension Measurement where UnitType == UnitMass {
+  /// A mass of 0 kg.
+  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+}

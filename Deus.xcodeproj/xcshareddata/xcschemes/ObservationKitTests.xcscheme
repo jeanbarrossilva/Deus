@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1630"
+   LastUpgradeVersion = "2600"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -19,9 +19,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "49EF5D562DE20D36008AFB31"
-               BuildableName = "StandardModelTests.xctest"
-               BlueprintName = "StandardModelTests"
+               BlueprintIdentifier = "496813632E4643BA00B22450"
+               BuildableName = "ObservationKitTests.xctest"
+               BlueprintName = "ObservationKitTests"
                ReferencedContainer = "container:Deus.xcodeproj">
             </BuildableReference>
          </TestableReference>

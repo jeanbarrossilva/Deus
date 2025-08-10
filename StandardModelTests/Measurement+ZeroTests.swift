@@ -15,9 +15,19 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@Suite("Measurement+Zero tests")
+struct MeasurementZeroTests {
+  @Test
+  func valueOfZeroUnitAngleIsZero() { #expect(Measurement<UnitAngle>.zero.value == 0) }
+
+  @Test
+  func valueOfZeroUnitElectricChargeIsZero() {
+    #expect(Measurement<UnitElectricCharge>.zero.value == 0)
+  }
+
+  @Test
+  func valueOfZeroUnitMassIsZero() { #expect(Measurement<UnitMass>.zero.value == 0) }
+}

@@ -15,9 +15,12 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Numerics
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct ComplexPlusRealTypeTests {
+  @Test
+  func multipliesByScalar() { #expect(Complex(2.0, 4) * 2.0 == .init(4, 8)) }
+}

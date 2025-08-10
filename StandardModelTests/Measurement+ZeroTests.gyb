@@ -1,5 +1,10 @@
+%{
+  from datetime import date
+
+  unit_classes = ['UnitAngle', 'UnitElectricCharge', 'UnitMass']
+}%
 // ===-------------------------------------------------------------------------------------------===
-// Copyright © 2025 Deus
+// Copyright © ${date.today().year} Deus
 //
 // This file is part of the Deus open-source project.
 //
@@ -15,9 +20,18 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@Suite("Measurement+Zero tests")
+struct MeasurementZeroTests {
+  % for index, unit_class in enumerate(unit_classes):
+  @Test
+  func valueOfZero${unit_class}IsZero() {
+    #expect(Measurement<${unit_class}>.zero.value == 0)
+  }
+    % if index < len(unit_classes) - 1:
+
+    % end
+  % end
+}

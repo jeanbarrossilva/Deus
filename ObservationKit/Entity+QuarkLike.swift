@@ -15,9 +15,24 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import AppKit
+import RealityKit
+import StandardModel
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+/// Shape of a quark-like: a sphere.
+private let mesh = MeshResource.generateSphere(radius: 0.2)
+
+extension Entity {
+  /// Converts a quark-like from the Standard Model into an `Entity`.
+  ///
+  /// - Parameters:
+  ///   - quarkLike: Quark-like from which an `Entity` is to be initialized.
+  convenience init?(_ quarkLike: some QuarkLike) {
+    self.init()
+    guard let materialColor = NSColor(quarkLike.color) else { return nil }
+    let metal = SimpleMaterial(color: materialColor, roughness: 0.8, isMetallic: true)
+    let component = ModelComponent(mesh: mesh, materials: [metal])
+    name = quarkLike.symbol
+    components.set(component)
+  }
+}

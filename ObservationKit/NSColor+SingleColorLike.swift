@@ -15,9 +15,28 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import AppKit
+import StandardModel
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+extension NSColor {
+  /// Converts a color-like from the Standard Model into an `NSColor`.
+  ///
+  /// - Parameter colorLike: Color-like from which an `NSColor` is to be initialized.
+  public convenience init?(_ colorLike: some SingleColorLike) {
+    if colorLike.is(Red.self) {
+      self.init(cgColor: Self.systemRed.cgColor)
+    } else if colorLike.is(Anti<Red>.self) {
+      self.init(cgColor: Self.red.cgColor)
+    } else if colorLike.is(Green.self) {
+      self.init(cgColor: Self.systemGreen.cgColor)
+    } else if colorLike.is(Anti<Green>.self) {
+      self.init(cgColor: Self.green.cgColor)
+    } else if colorLike.is(Blue.self) {
+      self.init(cgColor: Self.systemBlue.cgColor)
+    } else if colorLike.is(Anti<Blue>.self) {
+      self.init(cgColor: Self.blue.cgColor)
+    } else {
+      return nil
+    }
+  }
+}

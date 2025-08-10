@@ -15,9 +15,19 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+@Suite("Particle tests")
+struct ParticleTests {
+  @Test
+  func arePartiallyEqual() {
+    #expect(UpQuark(color: red).isPartiallyEqual(to: UpQuark(color: green)))
+  }
+
+  @Test
+  func areNotPartiallyEqual() {
+    #expect(!UpQuark(color: red).isPartiallyEqual(to: DownQuark(color: red)))
+  }
+}

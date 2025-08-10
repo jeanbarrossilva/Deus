@@ -15,9 +15,32 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Foundation
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct NegativePionTests {
+  private let downQuark = DownQuark(color: red)
+  private let upAntiquark = Anti(UpQuark(color: red))
+  private lazy var negativePion = downQuark + upAntiquark
+
+  @Test("d + ū → π⁻")
+  mutating func resultsFromCombiningADownQuarkAndAnUpAntiquark() {
+    #expect(negativePion.quarks[0].isPartiallyEqual(to: downQuark))
+    #expect(negativePion.quarks[1].isPartiallyEqual(to: upAntiquark))
+  }
+
+  @Test
+  mutating func chargeIsNegativeOneE() {
+    #expect(negativePion.charge == Measurement(value: -1, unit: .elementary))
+  }
+
+  @Test
+  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
+    #expect(
+      negativePion.getMass(approximatedBy: .base)
+        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
+    )
+  }
+}

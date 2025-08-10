@@ -15,9 +15,13 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct ApproximatorTests {
+  @Test
+  func baseApproximatorApproximatesToExactBaseValue() {
+    #expect(Approximator.base.approximate(2, 0.5, 0.2) == 2)
+  }
+}

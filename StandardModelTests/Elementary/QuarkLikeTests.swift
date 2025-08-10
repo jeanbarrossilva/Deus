@@ -15,9 +15,27 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import ObservationKit
-import SwiftUI
+import Testing
 
-/// Entrypoint of Deus.
-@main
-struct DeusApp: App { var body: some Scene { WindowGroup { ObservationView() } } }
+@testable import StandardModel
+
+struct QuarkLikeTests {
+  @Suite("Charge")
+  struct ChargeTests {
+    @Test(
+      arguments: AnyQuarkLike.discretion.filter({ quarkLike in quarkLike.symbol.contains(#/u|c|t/#)
+        })
+    )
+    func chargeOfUpTypeQuarkIsTwoThirdsOfE(_ quarkLike: AnyQuarkLike) {
+      #expect(quarkLike.charge == twoThirdsOfE)
+    }
+
+    @Test(
+      arguments: AnyQuarkLike.discretion.filter({ quarkLike in quarkLike.symbol.contains(#/d|s|b/#)
+        })
+    )
+    func chargeOfDownTypeQuarkIsNegativeOneThirdOfE(_ quarkLike: AnyQuarkLike) {
+      #expect(quarkLike.charge == negativeOneThirdOfE)
+    }
+  }
+}
