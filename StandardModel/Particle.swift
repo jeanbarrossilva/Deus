@@ -17,15 +17,6 @@
 
 import Foundation
 
-extension Anti: ParticleLike where Counterpart: Particle {
-  public static var spin: Spin { Counterpart.spin }
-  public static var symbol: String { Counterpart.symbol + "̅" }
-
-  public var charge: Measurement<UnitElectricCharge> {
-    Measurement(value: -counterpart.charge.value, unit: .elementary)
-  }
-}
-
 /// Subatomic excitation of an underlying field, which exhibits discrete interactions with other
 /// fields. Differs from vacuum fluctuations or delocalized modes on such field in that it is
 /// localized: it has a wavepacket of location. Such localization is made possible by
@@ -44,24 +35,17 @@ extension Anti: ParticleLike where Counterpart: Particle {
 /// - SeeAlso: ``Spin``
 public protocol Particle: ParticleLike, Opposable {}
 
-extension ParticleLike where Self: Equatable {
-  public func isPartiallyEqual<Other: ParticleLike>(to other: Other) -> Bool {
-    guard let other = other as? Self else { return _particleLikeIsPartiallyEqual(to: other) }
-    return self == other || _particleLikeIsPartiallyEqual(to: other)
-  }
-}
-
 /// Base protocol to which ``Particle``s and antiparticles conform.
-public protocol ParticleLike {
+public protocol ParticleLike: Comparable {
   /// Intrinsic angular momentum of this type of ``ParticleLike``.
-  static var spin: Spin { get }
-
-  /// Character which identifies this type of ``ParticleLike`` as per the International System of
-  /// Units (SI).
-  static var symbol: String { get }
+  var spin: Spin { get }
 
   /// Force experienced by this type of ``ParticleLike``s in an electromagnetic field.
   var charge: Measurement<UnitElectricCharge> { get }
+
+  /// Character which identifies this type of ``ParticleLike`` as per the International System of
+  /// Units (SI).
+  var symbol: String { get }
 
   /// Performs a partial equality comparison between this ``ParticleLike`` and the given one by
   /// testing all their properties common to such protocol against each other.
@@ -88,12 +72,20 @@ public protocol ParticleLike {
   /// - Parameter other: ``ParticleLike`` to which this one will be compared.
   /// - Returns: `true` if the properties shared by these ``ParticleLike`` values are equal;
   ///   otherwise, `false`.
-  func isPartiallyEqual<Other: ParticleLike>(to other: Other) -> Bool
+  func isPartiallyEqual(to other: any ParticleLike) -> Bool
+
+  /// Obtains the amount of rest energy of this ``ParticleLike``.
+  ///
+  /// - Parameter approximator: ``Approximator`` of the mass.
+  func getMass(
+    approximatedBy approximator: Approximator<Measurement<UnitMass>>
+  ) -> Measurement<UnitMass>
 }
 
 extension ParticleLike {
-  public func isPartiallyEqual<Other: ParticleLike>(to other: Other) -> Bool {
-    return _particleLikeIsPartiallyEqual(to: other)
+  public func isPartiallyEqual(to other: any ParticleLike) -> Bool {
+    guard let other = other as? Self else { return _particleLikeIsPartiallyEqual(to: other) }
+    return self == other || _particleLikeIsPartiallyEqual(to: other)
   }
 
   /// The default implementation of ``isPartiallyEqual(to:)``.
@@ -105,7 +97,35 @@ extension ParticleLike {
   /// - Parameter other: ``ParticleLike`` to which this one will be compared.
   /// - Returns: `true` if the properties shared by these ``ParticleLike`` values are equal;
   ///   otherwise, `false`.
-  func _particleLikeIsPartiallyEqual<Other: ParticleLike>(to other: Other) -> Bool {
-    return Self.spin == Other.spin && Self.symbol == Other.symbol && charge == other.charge
+  func _particleLikeIsPartiallyEqual(to other: any ParticleLike) -> Bool {
+    return spin == other.spin && charge == other.charge
+      && getMass(approximatedBy: .base) == other.getMass(approximatedBy: .base)
+      && symbol == other.symbol
   }
+}
+
+extension ParticleLike where Self: Equatable {
+  public static func == (lhs: Self, rhs: Self) -> Bool { lhs.isPartiallyEqual(to: rhs) }
+}
+
+extension ParticleLike where Self: Comparable {
+  public static func < (lhs: Self, rhs: Self) -> Bool {
+    lhs.getMass(approximatedBy: .base) < rhs.getMass(approximatedBy: .base)
+  }
+
+  public static func > (lhs: Self, rhs: Self) -> Bool {
+    lhs.getMass(approximatedBy: .base) > rhs.getMass(approximatedBy: .base)
+  }
+}
+
+extension Anti: Comparable, ParticleLike where Counterpart: Particle {
+  public var spin: Spin { counterpart.spin }
+  public var symbol: String { counterpart.symbol + "̅" }
+  public var charge: Measurement<UnitElectricCharge> {
+    Measurement(value: -counterpart.charge.value, unit: .elementary)
+  }
+
+  public func getMass(
+    approximatedBy approximator: Approximator<Measurement<UnitMass>>
+  ) -> Measurement<UnitMass> { counterpart.getMass(approximatedBy: approximator) }
 }

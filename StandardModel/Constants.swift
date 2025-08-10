@@ -17,17 +17,5 @@
 
 import Foundation
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
-
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
-
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+/// The speed of light.
+let c = Measurement(value: 299_792_458, unit: UnitSpeed.metersPerSecond)

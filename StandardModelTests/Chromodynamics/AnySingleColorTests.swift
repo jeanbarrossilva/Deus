@@ -15,19 +15,28 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
+import Testing
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+@testable import StandardModel
 
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+struct AnySingleColorTests {
+  @Test(arguments: [AnySingleColor(red), .init(green), .init(blue)])
+  func allKnownColorsAreIncludedInDiscretion(_ singleColor: AnySingleColor) {
+    #expect(
+      AnySingleColor.discretion.contains(where: { discreteSingleColor in
+        discreteSingleColor == singleColor
+      })
+    )
+  }
 
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+  @Test(arguments: AnySingleColor.discretion)
+  func isBaseColor(_ color: AnySingleColor) {
+    if color.base is Red {
+      #expect(color.is(Red.self))
+    } else if color.base is Green {
+      #expect(color.is(Green.self))
+    } else if color.base is Blue {
+      #expect(color.is(Blue.self))
+    }
+  }
 }

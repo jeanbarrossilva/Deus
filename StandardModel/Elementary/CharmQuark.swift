@@ -17,17 +17,24 @@
 
 import Foundation
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+/// Base value for calculating an approximation of the mass of a ``CharmQuark``.
+private let baseMass = Measurement(value: 1.275, unit: UnitMass.gigaelectronvolt)
 
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+/// Statistical uncertainty for calculating an approximation of the mass of a ``CharmQuark``.
+private let massStatisticalUncertainty = Measurement(value: 25, unit: UnitMass.megaelectronvolt)
 
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+/// Third heaviest ``Quark``, with a Lagrangian mass of 1.275 ± 0.025 GeV/*c*². Decays to a
+/// ``StrangeQuark``.
+public struct CharmQuark<Color: SingleColor>: Quark {
+  public let symbol = "c"
+  public let charge = twoThirdsOfE
+  public let color: Color
+
+  public init(color: Color) { self.color = color }
+
+  public func getMass(
+    approximatedBy approximator: Approximator<Measurement<UnitMass>>
+  ) -> Measurement<UnitMass> {
+    approximator.approximate(baseMass, massStatisticalUncertainty, .zero)
+  }
 }

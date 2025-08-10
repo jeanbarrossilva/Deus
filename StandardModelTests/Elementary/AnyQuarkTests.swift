@@ -15,25 +15,24 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
 import Testing
 
 @testable import StandardModel
 
-struct AntiparticleTests {
-  @Test
-  func chargeIsOpposite() {
-    #expect(Anti(UpQuark(color: red)).charge == Measurement(value: -2 / 3, unit: .elementary))
+struct AnyQuarkTests {
+  @Test(arguments: [
+    AnyQuark(UpQuark(color: red)), .init(UpQuark(color: green)), .init(UpQuark(color: blue)),
+    .init(DownQuark(color: red)), .init(DownQuark(color: green)), .init(DownQuark(color: blue)),
+    .init(StrangeQuark(color: red)), .init(StrangeQuark(color: green)),
+    .init(StrangeQuark(color: blue)), .init(CharmQuark(color: red)),
+    .init(CharmQuark(color: green)), .init(CharmQuark(color: blue)), .init(BottomQuark(color: red)),
+    .init(BottomQuark(color: green)), .init(BottomQuark(color: blue)), .init(TopQuark(color: red)),
+    .init(TopQuark(color: green)), .init(TopQuark(color: blue))
+  ])
+  func allKnownQuarksAreIncludedInDiscretion(_ quark: AnyQuark) {
+    #expect(AnyQuark.discretion.contains(where: { discreteQuark in discreteQuark == quark }))
   }
 
-  @Test
-  func massIsSameAsOfCounterpart() {
-    let particle = UpQuark(color: red)
-    #expect(
-      Anti(particle).getMass(approximatedBy: .base) == particle.getMass(approximatedBy: .base)
-    )
-  }
-
-  @Test
-  func symbolHasOverbar() { #expect(Anti(UpQuark(color: red)).symbol == "u̅") }
+  @Test(arguments: AnyQuark.discretion)
+  func isPartiallyEqualToBase(_ quark: AnyQuark) { #expect(quark.isPartiallyEqual(to: quark.base)) }
 }

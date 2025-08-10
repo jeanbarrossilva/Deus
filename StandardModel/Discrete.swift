@@ -15,19 +15,18 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
+/// Immutable ``Opposable`` with a finite set of describable states in which an instance of it can
+/// be, including both its matter and antimatter variants.
+///
+/// - SeeAlso: ``discretion``
+public protocol Discrete: Opposable {
+  /// Type of the set which contains the discrete values.
+  associatedtype Discretion: Collection<Self>
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
-
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
-
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+  /// Set of possible states of an instance of this ``Discrete``.
+  ///
+  /// > Note: It is implied that all conforming implementations *do* contain at least one possible
+  /// state. Therefore, it is expected that the returned collection is populated with at least one
+  /// instance.
+  static var discretion: Discretion { get }
 }

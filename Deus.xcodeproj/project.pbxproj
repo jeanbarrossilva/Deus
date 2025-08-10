@@ -10,6 +10,7 @@
 		4936BB7F2DEBC3B600F3FC28 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 4936BB7E2DEBC3B600F3FC28 /* Numerics */; };
 		494EFC152DDF36D700C66063 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; };
 		494EFC162DDF36D700C66063 /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		496813682E4643BA00B22450 /* ObservationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; };
 		496882DC2DECCE4F004CB967 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; };
 		496882DD2DECCE4F004CB967 /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		498FA27E2E2459DE0058A9C8 /* ObservationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; };
@@ -47,6 +48,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4960AB472DDCE34E00EB1410;
 			remoteInfo = Geometry;
+		};
+		496813692E4643BA00B22450 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49FD311A2DBFC9E2003CEAF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 498FA26A2E2459DE0058A9C8;
+			remoteInfo = ObservationKit;
 		};
 		496882DE2DECCE4F004CB967 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -130,8 +138,8 @@
 		4960AB482DDCE34E00EB1410 /* Geometry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Geometry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4960AB502DDCE34E00EB1410 /* GeometryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeometryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4960F2542DDF38D3002EF7C0 /* Deus.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deus.xctestplan; sourceTree = "<group>"; };
+		496813642E4643BA00B22450 /* ObservationKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObservationKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObservationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49E6A1702E2A731000C2BDD1 /* StandardModelKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = StandardModelKit; sourceTree = "<group>"; };
 		49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StandardModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EF5D572DE20D36008AFB31 /* StandardModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StandardModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,6 +173,11 @@
 		4960AB562DDCE34E00EB1410 /* GeometryTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = GeometryTests;
+			sourceTree = "<group>";
+		};
+		496813652E4643BA00B22450 /* ObservationKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ObservationKitTests;
 			sourceTree = "<group>";
 		};
 		498FA26C2E2459DE0058A9C8 /* ObservationKit */ = {
@@ -229,6 +242,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		496813612E4643BA00B22450 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				496813682E4643BA00B22450 /* ObservationKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		498FA2682E2459DE0058A9C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -267,7 +288,6 @@
 		49FD31192DBFC9E2003CEAF9 = {
 			isa = PBXGroup;
 			children = (
-				49E6A1702E2A731000C2BDD1 /* StandardModelKit */,
 				492FE57C2DE70D0B00BC54F9 /* gyb.sh */,
 				492FE57B2DE70CE000BC54F9 /* gyb.py */,
 				4960F2542DDF38D3002EF7C0 /* Deus.xctestplan */,
@@ -286,12 +306,14 @@
 				49EF5D502DE20D36008AFB31 /* StandardModel */,
 				49EF5D5D2DE20D36008AFB31 /* StandardModelTests */,
 				498FA26C2E2459DE0058A9C8 /* ObservationKit */,
+				496813652E4643BA00B22450 /* ObservationKitTests */,
 				4960AB6D2DDCE45D00EB1410 /* Frameworks */,
 				494EFBF92DDF36B100C66063 /* RelativityKit.framework */,
 				494EFC012DDF36B200C66063 /* RelativityKitTests.xctest */,
 				49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */,
 				49EF5D572DE20D36008AFB31 /* StandardModelTests.xctest */,
 				498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */,
+				496813642E4643BA00B22450 /* ObservationKitTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -470,6 +492,29 @@
 			productReference = 4960AB502DDCE34E00EB1410 /* GeometryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		496813632E4643BA00B22450 /* ObservationKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4968136B2E4643BA00B22450 /* Build configuration list for PBXNativeTarget "ObservationKitTests" */;
+			buildPhases = (
+				496813602E4643BA00B22450 /* Sources */,
+				496813612E4643BA00B22450 /* Frameworks */,
+				496813622E4643BA00B22450 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4968136A2E4643BA00B22450 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				496813652E4643BA00B22450 /* ObservationKitTests */,
+			);
+			name = ObservationKitTests;
+			packageProductDependencies = (
+			);
+			productName = ObservationKitTests;
+			productReference = 496813642E4643BA00B22450 /* ObservationKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		498FA26A2E2459DE0058A9C8 /* ObservationKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 498FA2842E2459DE0058A9C8 /* Build configuration list for PBXNativeTarget "ObservationKit" */;
@@ -575,6 +620,9 @@
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = 4927F36B2DD25BC400E368D8;
 					};
+					496813632E4643BA00B22450 = {
+						CreatedOnToolsVersion = 26.0;
+					};
 					498FA26A2E2459DE0058A9C8 = {
 						CreatedOnToolsVersion = 26.0;
 					};
@@ -615,6 +663,7 @@
 				49EF5D4E2DE20D36008AFB31 /* StandardModel */,
 				49EF5D562DE20D36008AFB31 /* StandardModelTests */,
 				498FA26A2E2459DE0058A9C8 /* ObservationKit */,
+				496813632E4643BA00B22450 /* ObservationKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -656,6 +705,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4960AB4E2DDCE34E00EB1410 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		496813622E4643BA00B22450 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -751,6 +807,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		496813602E4643BA00B22450 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		498FA2672E2459DE0058A9C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -794,6 +857,11 @@
 			isa = PBXTargetDependency;
 			target = 4960AB472DDCE34E00EB1410 /* Geometry */;
 			targetProxy = 494EFC172DDF36D700C66063 /* PBXContainerItemProxy */;
+		};
+		4968136A2E4643BA00B22450 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 498FA26A2E2459DE0058A9C8 /* ObservationKit */;
+			targetProxy = 496813692E4643BA00B22450 /* PBXContainerItemProxy */;
 		};
 		496882DF2DECCE4F004CB967 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1102,6 +1170,42 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
+			};
+			name = Release;
+		};
+		4968136C2E4643BA00B22450 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X5FKTSKM38;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.ObservationKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4968136D2E4643BA00B22450 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X5FKTSKM38;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.ObservationKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1464,6 +1568,15 @@
 			buildConfigurations = (
 				4960AB602DDCE34E00EB1410 /* Debug */,
 				4960AB612DDCE34E00EB1410 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4968136B2E4643BA00B22450 /* Build configuration list for PBXNativeTarget "ObservationKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4968136C2E4643BA00B22450 /* Debug */,
+				4968136D2E4643BA00B22450 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

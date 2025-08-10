@@ -16,22 +16,29 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import AppKit
-import RealityKit
 import StandardModel
 
-private let mesh = MeshResource.generateSphere(radius: 0.2)
-
-extension Entity {
-  /// Converts a quark-like from the Standard Model into an `Entity`.
+extension NSColor {
+  /// Converts a color-like from the Standard Model into an `NSColor`.
   ///
-  /// - Parameters:
-  ///   - quarkLike: Quark-like from which an `Entity` is to be initialized.
-  convenience init?(_ quarkLike: some QuarkLike) {
-    self.init()
-    guard let materialColor = NSColor(quarkLike.color) else { return nil }
-    let metal = SimpleMaterial(color: materialColor, roughness: 0.8, isMetallic: true)
-    let component = ModelComponent(mesh: mesh, materials: [metal])
-    name = quarkLike.symbol
-    components.set(component)
+  /// - Parameter colorLike: Color-like from which an `NSColor` is to be initialized.
+  public convenience init?<StandardModelColorLike: SingleColorLike>(
+    _ colorLike: StandardModelColorLike
+  ) {
+    if colorLike.is(Red.self) {
+      self.init(cgColor: Self.systemRed.cgColor)
+    } else if colorLike.is(Anti<Red>.self) {
+      self.init(cgColor: Self.red.cgColor)
+    } else if colorLike.is(Green.self) {
+      self.init(cgColor: Self.systemGreen.cgColor)
+    } else if colorLike.is(Anti<Green>.self) {
+      self.init(cgColor: Self.green.cgColor)
+    } else if colorLike.is(Blue.self) {
+      self.init(cgColor: Self.systemBlue.cgColor)
+    } else if colorLike.is(Anti<Blue>.self) {
+      self.init(cgColor: Self.blue.cgColor)
+    } else {
+      self.init(named: "\(StandardModelColorLike.self)")
+    }
   }
 }

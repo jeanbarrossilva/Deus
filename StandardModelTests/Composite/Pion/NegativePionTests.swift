@@ -16,18 +16,31 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import Foundation
+import Testing
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+@testable import StandardModel
 
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+struct NegativePionTests {
+  private let downQuark = DownQuark(color: red)
+  private let upAntiquark = Anti(UpQuark(color: red))
+  private lazy var negativePion = downQuark + upAntiquark
 
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+  @Test("d + ū → π⁻")
+  mutating func resultsFromCombiningADownQuarkAndAnUpAntiquark() {
+    #expect(negativePion.quarks[0].isPartiallyEqual(to: downQuark))
+    #expect(negativePion.quarks[1].isPartiallyEqual(to: upAntiquark))
+  }
+
+  @Test
+  mutating func chargeIsNegativeOneE() {
+    #expect(negativePion.charge == Measurement(value: -1, unit: .elementary))
+  }
+
+  @Test
+  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
+    #expect(
+      negativePion.getMass(approximatedBy: .base)
+        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
+    )
+  }
 }

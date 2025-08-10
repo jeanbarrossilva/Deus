@@ -16,18 +16,21 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import Foundation
+import Testing
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+@testable import StandardModel
 
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+struct BottomQuarkTests {
+  private let bottomQuark = BottomQuark(color: red)
 
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+  @Test
+  func massApproximatedByBaseIsFourPointEighteenGeV() {
+    #expect(
+      bottomQuark.getMass(approximatedBy: .base)
+        == Measurement(value: 4.18, unit: UnitMass.gigaelectronvolt)
+    )
+  }
+
+  @Test
+  func symbolIsB() { #expect(bottomQuark.symbol == "b") }
 }

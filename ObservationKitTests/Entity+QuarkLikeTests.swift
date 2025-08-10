@@ -15,19 +15,28 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
+import AppKit
+import RealityKit
+import StandardModel
+import Testing
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+@testable import ObservationKit
 
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
-
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+@Suite("Entity+QuarkLike tests")
+struct EntityQuarkLikeTests {
+  @Test(arguments: AnyQuarkLike.discretion)
+  func entityIsColored(witColorOf quark: AnyQuarkLike) {
+    guard let entity = Entity(quark) else { fatalError("Entity initialization has failed.") }
+    let components = entity.components
+    #expect(components.count == 1)
+    guard let singleComponent = components[components.startIndex] as? ModelComponent else {
+      fatalError("Single component of entity is not a ModelComponent.")
+    }
+    let materials = singleComponent.materials
+    #expect(materials.count == 1)
+    guard let singleMaterial = materials[materials.startIndex] as? SimpleMaterial else {
+      fatalError("Single material of entity is not a simple one.")
+    }
+    #expect(singleMaterial.color.tint == NSColor(quark.color))
+  }
 }

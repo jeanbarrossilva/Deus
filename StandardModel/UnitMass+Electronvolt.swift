@@ -17,17 +17,22 @@
 
 import Foundation
 
-extension Measurement where UnitType == UnitAngle {
-  /// An angle of 0º.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+extension UnitMass {
+  /// Amount in gigaelectronvolts (GeV/*c*²).
+  static let gigaelectronvolt = UnitMass(
+    symbol: "GeV",
+    converter: UnitConverterLinear(coefficient: 5.6095886 * pow(10, 26) / pow(c.value, 2))
+  )
 
-extension Measurement where UnitType == UnitElectricCharge {
-  /// An electric charge of 0 C.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
-}
+  /// Amount in megaelectronvolts (MeV/*c*²).
+  static let megaelectronvolt = UnitMass(
+    symbol: "MeV",
+    converter: UnitConverterLinear(coefficient: 5.6095886 * pow(10, 29) / pow(c.value, 2))
+  )
 
-extension Measurement where UnitType == UnitMass {
-  /// A mass of 0 kg.
-  public static let zero = Measurement(value: 0, unit: UnitType.baseUnit())
+  /// Amount in electronvolts (eV/*c*²).
+  static let electronvolt = UnitMass(
+    symbol: "eV",
+    converter: UnitConverterLinear(coefficient: 5.6095886 * pow(10, 35) / pow(c.value, 2))
+  )
 }

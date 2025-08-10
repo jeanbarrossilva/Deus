@@ -1,7 +1,7 @@
 %{
   from datetime import date
 
-  unit_classes = ['UnitAngle', 'UnitElectricCharge']
+  unit_classes = ['UnitAngle', 'UnitElectricCharge', 'UnitMass']
 }%
 // ===-------------------------------------------------------------------------------------------===
 // Copyright © ${date.today().year} Deus

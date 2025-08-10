@@ -18,81 +18,15 @@
 import Foundation
 
 /// Charge of up-type quarks.
-private let twoThirdsOfE = Measurement(value: 2 / 3, unit: UnitElectricCharge.elementary)
+let twoThirdsOfE = Measurement(value: 2 / 3, unit: UnitElectricCharge.elementary)
 
 /// Charge of down-type quarks.
-private let negativeOneThirdOfE = Measurement(value: -1 / 3, unit: UnitElectricCharge.elementary)
+let negativeOneThirdOfE = Measurement(value: -1 / 3, unit: UnitElectricCharge.elementary)
 
-/// Lightest ``Quark``, with a Lagrangian mass of 2.3 ± 0.7 ± 0.5 MeV/*c*². As per the Standard
-/// Model, cannot decay.
-public struct UpQuark<Color: SingleColor>: Quark {
-  public static var symbol: String { "u" }
+/// Base protocol to which ``Quark``s and antiquarks conform.
+public protocol QuarkLike: ColoredParticleLike where Color: SingleColorLike {}
 
-  public let charge = twoThirdsOfE
-
-  public let color: Color
-
-  public init(color: Color) { self.color = color }
-}
-
-/// Second lightest ``Quark``, with a Lagrangian mass of 4.8 ± 0.5 ± 0.3 MeV/*c*². Decays to an
-/// ``UpQuark``.
-public struct DownQuark<Color: SingleColor>: Quark {
-  public static var symbol: String { "d" }
-
-  public let charge = negativeOneThirdOfE
-
-  public let color: Color
-
-  public init(color: Color) { self.color = color }
-}
-
-/// Third lightest ``Quark``, with a Lagrangian mass of 95 ± 5 MeV/*c*². Decays to a ``DownQuark``.
-public struct StrangeQuark<Color: SingleColor>: Quark {
-  public static var symbol: String { "s" }
-
-  public let charge = negativeOneThirdOfE
-
-  public let color: Color
-
-  public init(color: Color) { self.color = color }
-}
-
-/// Third heaviest ``Quark``, with a Lagrangian mass of 1.275 ± 0.025 GeV/*c*². Decays to a
-/// ``StrangeQuark``.
-public struct CharmQuark<Color: SingleColor>: Quark {
-  public static var symbol: String { "c" }
-
-  public let charge = twoThirdsOfE
-
-  public let color: Color
-
-  public init(color: Color) { self.color = color }
-}
-
-/// Second heaviest ``Quark``, with a Lagrangian mass of 4.18 ± 30 GeV/*c*². Decays to a
-/// ``CharmQuark``.
-public struct BottomQuark<Color: SingleColor>: Quark {
-  public static var symbol: String { "b" }
-
-  public let charge = negativeOneThirdOfE
-
-  public let color: Color
-
-  public init(color: Color) { self.color = color }
-}
-
-/// Heaviest ``Quark``, with a Lagrangian mass of 173.21 ± 0.51 ± 0.7 GeV/*c*². Decays to a
-/// ``BottomQuark``.
-struct TopQuark<Color: SingleColor>: Quark {
-  public static var symbol: String { "t" }
-
-  public let charge = twoThirdsOfE
-
-  public let color: Color
-
-  public init(color: Color) { self.color = color }
-}
+extension QuarkLike where Self: ParticleLike { public var spin: Spin { .half } }
 
 extension Anti: QuarkLike where Counterpart: Quark, Counterpart.Color: SingleColor {
   public typealias Color = Anti<Counterpart.Color>
@@ -140,9 +74,4 @@ extension Anti: QuarkLike where Counterpart: Quark, Counterpart.Color: SingleCol
 ///
 /// - SeeAlso: ``ParticleLike/charge``
 /// - SeeAlso: ``Spin/half``
-public protocol Quark: QuarkLike, ColoredParticle where Color: SingleColorLike {}
-
-extension QuarkLike where Self: ParticleLike { public static var spin: Spin { .half } }
-
-/// Base protocol to which ``Quark``s and antiquarks conform.
-public protocol QuarkLike: ColoredParticleLike where Color: SingleColorLike {}
+public protocol Quark: QuarkLike, ColoredParticle where Color: SingleColor {}

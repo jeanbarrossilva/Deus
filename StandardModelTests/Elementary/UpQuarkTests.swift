@@ -15,10 +15,22 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import SwiftCompilerPlugin
-import SwiftSyntaxMacros
+import Foundation
+import Testing
 
-@main
-struct StandardModelKitPlugin: CompilerPlugin {
-  let providingMacros: [Macro.Type] = [DiscreteQuarkTesterMacro.self]
+@testable import StandardModel
+
+struct UpQuarkTests {
+  private let upQuark = UpQuark(color: red)
+
+  @Test
+  func massApproximatedByBaseIsTwoPointThreeMeV() {
+    #expect(
+      upQuark.getMass(approximatedBy: .base)
+        == Measurement(value: 2.3, unit: UnitMass.megaelectronvolt)
+    )
+  }
+
+  @Test
+  func symbolIsU() { #expect(upQuark.symbol == "u") }
 }
