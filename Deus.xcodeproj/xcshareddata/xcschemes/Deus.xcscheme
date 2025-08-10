@@ -33,8 +33,6 @@
             reference = "container:Deus.xctestplan"
             default = "YES">
          </TestPlanReference>
-         <AutocreatedTestPlanReference>
-         </AutocreatedTestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference

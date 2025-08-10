@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4936BB7F2DEBC3B600F3FC28 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 4936BB7E2DEBC3B600F3FC28 /* Numerics */; };
 		494EFC152DDF36D700C66063 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; };
 		494EFC162DDF36D700C66063 /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496813682E4643BA00B22450 /* ObservationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; };
@@ -17,6 +16,7 @@
 		498FA27F2E2459DE0058A9C8 /* ObservationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		498FA2F52E2591E80058A9C8 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
 		498FA2F62E2591E80058A9C8 /* StandardModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49B513662E4955D200B3D424 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 49B513652E4955D200B3D424 /* Numerics */; };
 		49EF5D582DE20D36008AFB31 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
 /* End PBXBuildFile section */
 
@@ -247,8 +247,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B513662E4955D200B3D424 /* Numerics in Frameworks */,
 				496882DC2DECCE4F004CB967 /* Geometry.framework in Frameworks */,
-				4936BB7F2DEBC3B600F3FC28 /* Numerics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +521,7 @@
 			);
 			name = StandardModel;
 			packageProductDependencies = (
-				4936BB7E2DEBC3B600F3FC28 /* Numerics */,
+				49B513652E4955D200B3D424 /* Numerics */,
 			);
 			productName = StandardKit;
 			productReference = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */;
@@ -603,8 +603,7 @@
 			mainGroup = 49FD31192DBFC9E2003CEAF9;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				4936BB7D2DEBC3B600F3FC28 /* XCRemoteSwiftPackageReference "swift-numerics" */,
-				49E6A1DC2E2ABEFE00C2BDD1 /* XCLocalSwiftPackageReference "StandardModelKit" */,
+				49B513642E4955D200B3D424 /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 49FD31192DBFC9E2003CEAF9;
@@ -1515,15 +1514,8 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		49E6A1DC2E2ABEFE00C2BDD1 /* XCLocalSwiftPackageReference "StandardModelKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = StandardModelKit;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
-		4936BB7D2DEBC3B600F3FC28 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
+		49B513642E4955D200B3D424 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-numerics.git";
 			requirement = {
@@ -1534,9 +1526,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4936BB7E2DEBC3B600F3FC28 /* Numerics */ = {
+		49B513652E4955D200B3D424 /* Numerics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4936BB7D2DEBC3B600F3FC28 /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			package = 49B513642E4955D200B3D424 /* XCRemoteSwiftPackageReference "swift-numerics" */;
 			productName = Numerics;
 		};
 /* End XCSwiftPackageProductDependency section */
