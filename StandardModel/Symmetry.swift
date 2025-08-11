@@ -17,7 +17,7 @@
 
 import Foundation
 import Geometry
-import Numerics
+internal import Numerics
 
 // MARK: - U(1)
 extension Complex<Double> {

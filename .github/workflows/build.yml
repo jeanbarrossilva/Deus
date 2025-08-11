@@ -14,4 +14,4 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_26_beta.app
       - name: Build
-        run: xcodebuild -scheme Deus -workspace Deus.xcodeproj/project.xcworkspace clean build | xcpretty && exit ${PIPESTATUS[0]}
+        run: xcodebuild -scheme Deus clean build | xcpretty && exit ${PIPESTATUS[0]}
