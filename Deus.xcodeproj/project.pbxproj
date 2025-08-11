@@ -564,14 +564,12 @@
 					};
 					494EFC002DDF36B200C66063 = {
 						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 4927F36B2DD25BC400E368D8;
 					};
 					4960AB472DDCE34E00EB1410 = {
 						CreatedOnToolsVersion = 16.3;
 					};
 					4960AB4F2DDCE34E00EB1410 = {
 						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 4927F36B2DD25BC400E368D8;
 					};
 					496813632E4643BA00B22450 = {
 						CreatedOnToolsVersion = 26.0;
@@ -585,7 +583,6 @@
 					49EF5D562DE20D36008AFB31 = {
 						CreatedOnToolsVersion = 16.3;
 						LastSwiftMigration = 1630;
-						TestTargetID = 4927F36B2DD25BC400E368D8;
 					};
 				};
 			};
@@ -951,7 +948,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Debug;
 		};
@@ -967,7 +963,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Release;
 		};
@@ -1053,7 +1048,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Debug;
 		};
@@ -1069,7 +1063,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Release;
 		};
@@ -1273,7 +1266,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Debug;
 		};
@@ -1291,7 +1283,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Release;
 		};
