@@ -16,4 +16,4 @@ jobs:
       - name: Build
         env:
           scheme: ${{ 'default' }}
-        run: xcodebuild -scheme Deus -workspace Deus.xcodeproj/project.xcworkspace clean build | xcpretty && exit ${PIPESTATUS[0]}
+        run: xcodebuild -destination 'platform=macOS,arch=arm64' -scheme Deus -workspace Deus.xcodeproj/project.xcworkspace clean build | xcpretty && exit ${PIPESTATUS[0]}
