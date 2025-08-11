@@ -17,24 +17,6 @@
 
 import Foundation
 
-/// Subatomic excitation of an underlying field, which exhibits discrete interactions with other
-/// fields. Differs from vacuum fluctuations or delocalized modes on such field in that it is
-/// localized: it has a wavepacket of location. Such localization is made possible by
-/// collapse-like, interpretation-defined consequence of measuring its wavefunction Ψ(*x*, *t*),
-/// where *x* is the position and *t* is the time.
-///
-/// ## Classification
-///
-/// Particles are divided into two families:
-///
-/// Family    | Spin              | Characterization                                                                                                                        |
-/// --------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-/// Boson     | s ∈ ℤ × *ħ*       | **Bose–Einstein distribution**: there can be an integer multiple of *nQ* number of particles in a concentration per unit of its volume. |
-/// Fermion   | s ∈ (ℤ + ½) × *ħ* | **Pauli exclusion**: identical particles of such family cannot have equal quantum states in the same spacetime.                         |
-///
-/// - SeeAlso: ``Spin``
-public protocol Particle: ParticleLike, Opposable {}
-
 /// Base protocol to which ``Particle``s and antiparticles conform.
 public protocol ParticleLike: Comparable {
   /// Intrinsic angular momentum of this type of ``ParticleLike``.
@@ -72,7 +54,7 @@ public protocol ParticleLike: Comparable {
   /// - Parameter other: ``ParticleLike`` to which this one will be compared.
   /// - Returns: `true` if the properties shared by these ``ParticleLike`` values are equal;
   ///   otherwise, `false`.
-  func isPartiallyEqual(to other: any ParticleLike) -> Bool
+  func isPartiallyEqual(to other: some ParticleLike) -> Bool
 
   /// Obtains the amount of rest energy of this ``ParticleLike``.
   ///
@@ -83,7 +65,7 @@ public protocol ParticleLike: Comparable {
 }
 
 extension ParticleLike {
-  public func isPartiallyEqual(to other: any ParticleLike) -> Bool {
+  public func isPartiallyEqual(to other: some ParticleLike) -> Bool {
     guard let other = other as? Self else { return _particleLikeIsPartiallyEqual(to: other) }
     return self == other || _particleLikeIsPartiallyEqual(to: other)
   }
@@ -97,15 +79,11 @@ extension ParticleLike {
   /// - Parameter other: ``ParticleLike`` to which this one will be compared.
   /// - Returns: `true` if the properties shared by these ``ParticleLike`` values are equal;
   ///   otherwise, `false`.
-  func _particleLikeIsPartiallyEqual(to other: any ParticleLike) -> Bool {
+  func _particleLikeIsPartiallyEqual(to other: some ParticleLike) -> Bool {
     return spin == other.spin && charge == other.charge
       && getMass(approximatedBy: .base) == other.getMass(approximatedBy: .base)
       && symbol == other.symbol
   }
-}
-
-extension ParticleLike where Self: Equatable {
-  public static func == (lhs: Self, rhs: Self) -> Bool { lhs.isPartiallyEqual(to: rhs) }
 }
 
 extension ParticleLike where Self: Comparable {
@@ -117,6 +95,24 @@ extension ParticleLike where Self: Comparable {
     lhs.getMass(approximatedBy: .base) > rhs.getMass(approximatedBy: .base)
   }
 }
+
+/// Subatomic excitation of an underlying field, which exhibits discrete interactions with other
+/// fields. Differs from vacuum fluctuations or delocalized modes on such field in that it is
+/// localized: it has a wavepacket of location. Such localization is made possible by
+/// collapse-like, interpretation-defined consequence of measuring its wavefunction Ψ(*x*, *t*),
+/// where *x* is the position and *t* is the time.
+///
+/// ## Classification
+///
+/// Particles are divided into two families:
+///
+/// Family    | Spin              | Characterization                                                                                                                        |
+/// --------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+/// Boson     | s ∈ ℤ × *ħ*       | **Bose–Einstein distribution**: there can be an integer multiple of *nQ* number of particles in a concentration per unit of its volume. |
+/// Fermion   | s ∈ (ℤ + ½) × *ħ* | **Pauli exclusion**: identical particles of such family cannot have equal quantum states in the same spacetime.                         |
+///
+/// - SeeAlso: ``Spin``
+public protocol Particle: ParticleLike, Opposable {}
 
 extension Anti: Comparable, ParticleLike where Counterpart: Particle {
   public var spin: Spin { counterpart.spin }

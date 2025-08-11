@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # ===--------------------------------------------------------------------------------------------===
 # Copyright © 2025 Deus
 #
@@ -14,8 +13,20 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License along with this program. If not,
-# see https://www.gnu.org/licenses.</string>
+# see https://www.gnu.org/licenses.
 # ===--------------------------------------------------------------------------------------------===
 
+# Configures the Python virtual environment (venv).
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+
+# Installs packages required by some of the .gyb files into the venv.
+pip install inflect
+
+# Generates the boilerplate.
 find . -name '*.gyb' \
-  | while read file; do $SRCROOT/gyb.py --line-directive '' -o "${file%.gyb}.swift" "$file"; done
+  | while read file; do ./gyb.py --line-directive '' -o "${file%.gyb}.swift" "$file"; done
+
+# Deconfigures the venv.
+deactivate

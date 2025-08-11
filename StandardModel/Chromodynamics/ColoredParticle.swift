@@ -30,7 +30,7 @@ extension ColoredParticleLike {
   /// - Parameter other: ``ColoredParticleLike`` to which this one will be compared.
   /// - Returns: `true` if the properties shared by these ``ColoredParticleLike`` values are equal;
   ///   otherwise, `false`.
-  func _coloredParticleLikeIsPartiallyEqual(to other: any ParticleLike) -> Bool {
+  func _coloredParticleLikeIsPartiallyEqual(to other: some ParticleLike) -> Bool {
     guard let color = color as? AnyClass,
       let otherColor = (other as? any ColoredParticleLike)?.color as? AnyClass
     else { return _particleLikeIsPartiallyEqual(to: other) }
@@ -48,7 +48,7 @@ where Counterpart: ColoredParticle, Counterpart.Color: SingleColor {
 public protocol ColoredParticle<Color>: ColoredParticleLike, Particle {}
 
 extension ColoredParticle where Self: ParticleLike {
-  public func isPartiallyEqual(to other: any ParticleLike) -> Bool {
+  public func isPartiallyEqual(to other: some ParticleLike) -> Bool {
     guard let other = other as? any ColoredParticle else {
       return _particleLikeIsPartiallyEqual(to: other)
     }

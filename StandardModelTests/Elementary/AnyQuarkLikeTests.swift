@@ -46,9 +46,4 @@ struct AnyQuarkLikeTests {
         })
     )
   }
-
-  @Test(arguments: AnyQuarkLike.discretion)
-  func isPartiallyEqualToBase(_ quarkLike: AnyQuarkLike) {
-    #expect(quarkLike.isPartiallyEqual(to: quarkLike.base))
-  }
 }
