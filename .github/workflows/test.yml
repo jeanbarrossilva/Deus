@@ -1,20 +1,19 @@
-name: Build
+name: Test
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 jobs:
-  build:
-    name: Build
+  test:
     runs-on: macos-15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_26_beta.app/Contents/Developer
-      - name: Build
-        run: xcodebuild -scheme Deus -destination 'platform=OS X,arch=${{ matrix.arch }}' clean build | xcpretty && exit ${PIPESTATUS[0]}
+      - name: Test
+        run: xcodebuild -scheme Deus -destination 'platform=OS X,arch=${{ matrix.arch }}' build test | xcpretty && exit ${PIPESTATUS}
     strategy:
       matrix:
         arch: [x86_64, arm64]
