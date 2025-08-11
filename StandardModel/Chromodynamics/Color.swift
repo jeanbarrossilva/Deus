@@ -36,25 +36,25 @@ public let blue = Blue()
 /// Final state of confined ``ColoredParticleLike``s whose net ``Color`` charge is zero, making them
 /// effectively colorless. Results from the combination of ``Color``-anticolor pairs or of all
 /// ``SingleColor``s (``red`` + ``green`` + ``blue``).
-public class White: Color { fileprivate init() {} }
+public class White: Color, SpecificColor { fileprivate init() {} }
 
 /// Red (r) direction in the ``Color`` field.
-public class Red: SingleColor { fileprivate init() {} }
+public class Red: SingleColor, SpecificColor { fileprivate init() {} }
 
 /// Green (g) direction in the ``Color`` field.
-public class Green: SingleColor { fileprivate init() {} }
+public class Green: SingleColor, SpecificColor { fileprivate init() {} }
 
 /// Blue (b) direction in the ``Color`` field.
-public class Blue: SingleColor { fileprivate init() {} }
+public class Blue: SingleColor, SpecificColor { fileprivate init() {} }
 
 /// Antired (r̄) direction in the ``Color`` field.
-private class Antired: SingleColor { fileprivate init() {} }
+private class Antired: SingleColor, SpecificColor { fileprivate init() {} }
 
 /// Antigreen (ḡ) direction in the ``Color`` field.
-private class Antigreen: SingleColor { fileprivate init() {} }
+private class Antigreen: SingleColor, SpecificColor { fileprivate init() {} }
 
 /// Antiblue (b̄) direction in the ``Color`` field.
-private class Antiblue: SingleColor { fileprivate init() {} }
+private class Antiblue: SingleColor, SpecificColor { fileprivate init() {} }
 
 // MARK: Color and single-color-like declarations
 
@@ -81,6 +81,8 @@ public protocol SingleColorLike: Color {}
 
 extension Anti: Color, SingleColorLike where Counterpart: SingleColor {}
 
+extension Anti: SpecificColor where Counterpart: SingleColor & SpecificColor {}
+
 /// Type-erased ``SingleColorLike``. Might be ``red``, antired, ``green``, antigreen, ``blue`` or
 /// antiblue.
 public struct AnySingleColorLike: Discrete, SingleColor {
@@ -98,6 +100,10 @@ public struct AnySingleColorLike: Discrete, SingleColor {
 
   public func `is`(_ other: (some Color).Type) -> Bool { type(of: base) == other }
 }
+
+/// ``Color`` whose type has not been erased (i.e., non-``AnySingleColor`` or
+/// -``AnySingleColorLike``).
+public protocol SpecificColor: Color {}
 
 /// Color charge is a fundamental, confined (unobservable while free) property which determines its
 /// transformation under the SU(3) gauge symmetry whose field, SU(3)₍color₎ or gluon field, is

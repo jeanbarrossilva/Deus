@@ -35,7 +35,7 @@ public struct NegativePion: Equatable, Pion {
   }
 }
 
-extension DownQuark {
+extension DownQuark where Color: SpecificColor {
   /// Combines an up antiquark to this ``DownQuark``.
   ///
   /// - Parameters:
