@@ -19,6 +19,7 @@ jobs:
              -destination 'platform=OS X,arch=${{ matrix.arch }}' \
              -allowProvisioningUpdates CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO \
              build test |
+             tee xcodebuild.log |
              xcpretty &&
              exit ${PIPESTATUS[0]}
     strategy:
