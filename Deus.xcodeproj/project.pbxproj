@@ -131,6 +131,7 @@
 		4960AB502DDCE34E00EB1410 /* GeometryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeometryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4960F2542DDF38D3002EF7C0 /* Deus.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deus.xctestplan; sourceTree = "<group>"; };
 		496813642E4643BA00B22450 /* ObservationKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObservationKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4972442B2E4A021600481D5B /* requirements.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = requirements.txt; sourceTree = "<group>"; };
 		498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObservationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StandardModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EF5D572DE20D36008AFB31 /* StandardModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StandardModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +269,7 @@
 		49FD31192DBFC9E2003CEAF9 = {
 			isa = PBXGroup;
 			children = (
+				4972442B2E4A021600481D5B /* requirements.txt */,
 				492FE57C2DE70D0B00BC54F9 /* gyb.sh */,
 				492FE57B2DE70CE000BC54F9 /* gyb.py */,
 				4960F2542DDF38D3002EF7C0 /* Deus.xctestplan */,
