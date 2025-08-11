@@ -12,6 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_26_beta.app
+        run: sudo xcode-select -switch /Applications/Xcode_26_beta.app/Contents/Developer
       - name: Build
         run: xcodebuild -scheme Deus clean build | xcpretty && exit ${PIPESTATUS[0]}
