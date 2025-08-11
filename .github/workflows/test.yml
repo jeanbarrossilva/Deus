@@ -14,14 +14,20 @@ jobs:
         run: sudo xcode-select -switch /Applications/Xcode_26_beta.app/Contents/Developer
       - name: Test
         run: |
-             xcodebuild \
+             mkdir build && xcodebuild \
              -scheme Deus \
              -destination 'platform=OS X,arch=${{ matrix.arch }}' \
              -allowProvisioningUpdates CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO \
-             build test |
-             tee xcodebuild.log |
-             xcpretty &&
-             exit ${PIPESTATUS[0]}
+             build test \
+             | tee build/xcodebuild.log \
+             | xcpretty -r junit --output build/reports/xcodebuild.xml && exit ${PIPESTATUS[0]}
+      - name: Archive report
+        uses: actions/upload-artifact@v4
+        with:
+          name: deus-${{ github.head_ref }}-${{ github.sha }}-${{ matrix.arch }}-test
+          path: |
+                build/xcodebuild.log
+                build/reports/xcodebuild.xml
     strategy:
       matrix:
         arch: [x86_64, arm64]
