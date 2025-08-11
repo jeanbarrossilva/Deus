@@ -13,7 +13,7 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_26_beta.app/Contents/Developer
       - name: Test
-        run: xcodebuild -scheme Deus -destination 'platform=OS X,arch=${{ matrix.arch }}' build test | xcpretty && exit ${PIPESTATUS}
+        run: xcodebuild -scheme Deus -destination 'platform=OS X,arch=${{ matrix.arch }}' -allowProvisioningUpdates build test | xcpretty && exit ${PIPESTATUS}
     strategy:
       matrix:
         arch: [x86_64, arm64]
