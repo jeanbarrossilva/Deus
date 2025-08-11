@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Select Xcode
-        run: xcode-select -switch /Applications/Xcode_26_beta.app
+        run: sudo xcode-select -switch /Applications/Xcode_26_beta.app
       - name: Set default scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
