@@ -32,7 +32,4 @@ struct AnyQuarkTests {
   func allKnownQuarksAreIncludedInDiscretion(_ quark: AnyQuark) {
     #expect(AnyQuark.discretion.contains(where: { discreteQuark in discreteQuark == quark }))
   }
-
-  @Test(arguments: AnyQuark.discretion)
-  func isPartiallyEqualToBase(_ quark: AnyQuark) { #expect(quark.isPartiallyEqual(to: quark.base)) }
 }

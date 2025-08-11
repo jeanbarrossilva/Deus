@@ -48,6 +48,12 @@ public struct AnyQuarkLike: Discrete, QuarkLike {
   ) -> Measurement<UnitMass> { base.getMass(approximatedBy: approximator) }
 }
 
+extension AnyQuarkLike: Equatable {
+  public static func == (lhs: Self, rhs: Self) -> Bool {
+    lhs._coloredParticleLikeIsPartiallyEqual(to: rhs)
+  }
+}
+
 /// ``Quark`` whose flavor information has been erased.
 public struct AnyQuark: Discrete, Quark {
   /// ``Quark`` based on which this one was initialized.
@@ -81,4 +87,10 @@ public struct AnyQuark: Discrete, Quark {
   public func getMass(
     approximatedBy approximator: Approximator<Measurement<UnitMass>>
   ) -> Measurement<UnitMass> { base.getMass(approximatedBy: approximator) }
+}
+
+extension AnyQuark: Equatable {
+  public static func == (lhs: Self, rhs: Self) -> Bool {
+    lhs._coloredParticleLikeIsPartiallyEqual(to: rhs)
+  }
 }
