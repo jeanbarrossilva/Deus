@@ -1,4 +1,5 @@
-<img width="6047" height="1024" alt="Documentation cover" src="https://github.com/user-attachments/assets/2c89fafc-3619-4857-81cb-e7a9bac04036" />
+<img width="6047" height="1024" alt="Logo" src="https://github.com/user-attachments/assets/a3d03dc6-5b02-4f78-b960-f68372a34b27" />
+
 <h1 align="center">Deus</h1>
 <div align="center"><blockquote cite="https://users.ece.cmu.edu/~gamvrosi/thelastq.html#:~:text=%22LET%20THERE%20BE%20LIGHT!%22">Let there be light!</blockquote></div>
 <br/>
