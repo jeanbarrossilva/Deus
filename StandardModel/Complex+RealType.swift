@@ -15,7 +15,7 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Numerics
+internal import Numerics
 
 extension Complex {
   /// Multiplies the real and imaginary parts of a complex number by a scalar.

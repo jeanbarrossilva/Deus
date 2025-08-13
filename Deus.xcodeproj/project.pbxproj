@@ -10,13 +10,13 @@
 		494EFC152DDF36D700C66063 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; };
 		494EFC162DDF36D700C66063 /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496813682E4643BA00B22450 /* ObservationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; };
-		496882DC2DECCE4F004CB967 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; };
-		496882DD2DECCE4F004CB967 /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		497244D82E4A616100481D5B /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; };
+		497244D92E4A616100481D5B /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4960AB482DDCE34E00EB1410 /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		497244DE2E4A618100481D5B /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 497244DD2E4A618100481D5B /* Numerics */; };
 		498FA27E2E2459DE0058A9C8 /* ObservationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; };
 		498FA27F2E2459DE0058A9C8 /* ObservationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		498FA2F52E2591E80058A9C8 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
 		498FA2F62E2591E80058A9C8 /* StandardModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49B513662E4955D200B3D424 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 49B513652E4955D200B3D424 /* Numerics */; };
 		49EF5D582DE20D36008AFB31 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +49,7 @@
 			remoteGlobalIDString = 498FA26A2E2459DE0058A9C8;
 			remoteInfo = ObservationKit;
 		};
-		496882DE2DECCE4F004CB967 /* PBXContainerItemProxy */ = {
+		497244DA2E4A616100481D5B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 49FD311A2DBFC9E2003CEAF9 /* Project object */;
 			proxyType = 1;
@@ -101,7 +101,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				496882DD2DECCE4F004CB967 /* Geometry.framework in Embed Frameworks */,
+				497244D92E4A616100481D5B /* Geometry.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,8 +243,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49B513662E4955D200B3D424 /* Numerics in Frameworks */,
-				496882DC2DECCE4F004CB967 /* Geometry.framework in Frameworks */,
+				497244DE2E4A618100481D5B /* Numerics in Frameworks */,
+				497244D82E4A616100481D5B /* Geometry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,14 +510,14 @@
 			buildRules = (
 			);
 			dependencies = (
-				496882DF2DECCE4F004CB967 /* PBXTargetDependency */,
+				497244DB2E4A616100481D5B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				49EF5D502DE20D36008AFB31 /* StandardModel */,
 			);
 			name = StandardModel;
 			packageProductDependencies = (
-				49B513652E4955D200B3D424 /* Numerics */,
+				497244DD2E4A618100481D5B /* Numerics */,
 			);
 			productName = StandardKit;
 			productReference = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */;
@@ -564,14 +564,12 @@
 					};
 					494EFC002DDF36B200C66063 = {
 						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 4927F36B2DD25BC400E368D8;
 					};
 					4960AB472DDCE34E00EB1410 = {
 						CreatedOnToolsVersion = 16.3;
 					};
 					4960AB4F2DDCE34E00EB1410 = {
 						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 4927F36B2DD25BC400E368D8;
 					};
 					496813632E4643BA00B22450 = {
 						CreatedOnToolsVersion = 26.0;
@@ -585,7 +583,6 @@
 					49EF5D562DE20D36008AFB31 = {
 						CreatedOnToolsVersion = 16.3;
 						LastSwiftMigration = 1630;
-						TestTargetID = 4927F36B2DD25BC400E368D8;
 					};
 				};
 			};
@@ -599,7 +596,7 @@
 			mainGroup = 49FD31192DBFC9E2003CEAF9;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				49B513642E4955D200B3D424 /* XCRemoteSwiftPackageReference "swift-numerics" */,
+				497244DC2E4A618100481D5B /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 49FD31192DBFC9E2003CEAF9;
@@ -795,10 +792,10 @@
 			target = 498FA26A2E2459DE0058A9C8 /* ObservationKit */;
 			targetProxy = 496813692E4643BA00B22450 /* PBXContainerItemProxy */;
 		};
-		496882DF2DECCE4F004CB967 /* PBXTargetDependency */ = {
+		497244DB2E4A616100481D5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4960AB472DDCE34E00EB1410 /* Geometry */;
-			targetProxy = 496882DE2DECCE4F004CB967 /* PBXContainerItemProxy */;
+			targetProxy = 497244DA2E4A616100481D5B /* PBXContainerItemProxy */;
 		};
 		498FA27D2E2459DE0058A9C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -951,7 +948,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Debug;
 		};
@@ -967,7 +963,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Release;
 		};
@@ -1053,7 +1048,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Debug;
 		};
@@ -1069,7 +1063,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Release;
 		};
@@ -1273,7 +1266,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Debug;
 		};
@@ -1291,7 +1283,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Deus";
 			};
 			name = Release;
 		};
@@ -1511,7 +1502,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		49B513642E4955D200B3D424 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
+		497244DC2E4A618100481D5B /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-numerics.git";
 			requirement = {
@@ -1522,9 +1513,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		49B513652E4955D200B3D424 /* Numerics */ = {
+		497244DD2E4A618100481D5B /* Numerics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 49B513642E4955D200B3D424 /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			package = 497244DC2E4A618100481D5B /* XCRemoteSwiftPackageReference "swift-numerics" */;
 			productName = Numerics;
 		};
 /* End XCSwiftPackageProductDependency section */

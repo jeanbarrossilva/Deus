@@ -175,7 +175,7 @@ public final class Vector: TwoD {
   public let y: Double
 
   /// Distance between the zero ``Vector`` and this one; is, essentially, its length.
-  public private(set) lazy var module = sqrtl(x * x + y * y)
+  public private(set) lazy var module = (x * x + y * y).squareRoot()
 
   /// ``Vector`` whose direction is the same as that of this one, but with a module of 1.
   public private(set) lazy var unitary =

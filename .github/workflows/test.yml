@@ -1,0 +1,33 @@
+name: Test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_26_beta.app/Contents/Developer
+      - name: Test
+        run: |
+             mkdir build && xcodebuild \
+             -scheme Deus \
+             -destination 'platform=OS X,arch=${{ matrix.arch }}' \
+             -allowProvisioningUpdates CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO \
+             build test \
+             | tee build/xcodebuild.log \
+             | xcpretty -r junit --output build/reports/xcodebuild.xml && exit ${PIPESTATUS[0]}
+      - name: Archive report
+        uses: actions/upload-artifact@v4
+        with:
+          name: deus-${{ github.head_ref }}-${{ github.sha }}-${{ matrix.arch }}-test
+          path: |
+                build/xcodebuild.log
+                build/reports/xcodebuild.xml
+    strategy:
+      matrix:
+        arch: [x86_64, arm64]
