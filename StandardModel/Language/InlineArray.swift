@@ -15,31 +15,23 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
-import Testing
+/// An immutable container into which elements are laid out contiguously.
+public struct InlineArray<Element> {
+  /// Contiguous memory in which the elements are allocated.
+  private var buffer: UnsafeMutableBufferPointer<Element>?
+}
 
-@testable import StandardModel
-
-struct PositivePionTests {
-  private let upQuark = UpQuark(color: red)
-  private let downAntiquark = Anti(DownQuark(color: red))
-  private lazy var positivePion = upQuark + downAntiquark
-
-  @Test("u + d̄ → π⁺")
-  mutating func resultsFromCombiningAnUpQuarkAndADownAntiquark() {
-    #expect(positivePion.quarks.elementsEqual([.init(upQuark), .init(downAntiquark)]))
+extension InlineArray: ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: Element...) {
+    elements.withUnsafeBytes { body in buffer = .init(mutating: body.bindMemory(to: Element.self)) }
   }
+}
 
-  @Test
-  mutating func chargeIsOneE() {
-    #expect(positivePion.charge == Measurement(value: 1, unit: .elementary))
-  }
+extension InlineArray: Sequence {}
 
-  @Test
-  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
-    #expect(
-      positivePion.getMass(approximatedBy: .base)
-        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
-    )
-  }
+extension InlineArray: RandomAccessCollection {
+  public var startIndex: Int { buffer!.startIndex }
+  public var endIndex: Int { buffer!.endIndex }
+
+  public subscript(position: Int) -> Element { borrowing _read { yield buffer![position] } }
 }

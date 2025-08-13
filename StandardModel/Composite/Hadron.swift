@@ -40,12 +40,9 @@ import Foundation
 ///             • **⊗**: tensor product of two vector spaces *V* and *W*: an *m* × *n* matrix, where
 ///               *m* is the number of components of *V* and *n* is that of *W*.
 public protocol Hadron: ColoredParticle<White> {
-  /// `Sequence` of ``Quark``s that compose this ``Hadron``.
-  associatedtype Quarks: Sequence<any QuarkLike>
-
   /// ``Quark``s by which this ``Hadron`` is composed, bound by strong force via the gluon
   /// ``Particle``s.
-  var quarks: Quarks { get }
+  var quarks: InlineArray<AnyQuarkLike> { get }
 }
 
 extension Hadron {

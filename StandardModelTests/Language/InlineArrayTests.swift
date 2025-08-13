@@ -15,6 +15,11 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-extension InlineArray: @retroactive Sequence {}
+import Testing
 
-extension InlineArray: @retroactive Collection {}
+@testable import StandardModel
+
+struct InlineArrayTests {
+  @Test
+  func initializesFromLiteral() { #expect(InlineArray(arrayLiteral: 2, 4).elementsEqual([2, 4])) }
+}

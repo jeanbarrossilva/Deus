@@ -45,10 +45,8 @@ public protocol Pion: Meson {}
 
 extension Pion where Self: ParticleLike { public var spin: Spin { .zero } }
 
-extension Pion where Self: Equatable, Quarks == InlineArray<2, any QuarkLike> {
+extension Pion where Self: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
-    lhs.charge == rhs.charge && lhs.color === rhs.color
-      && lhs.quarks[0].isPartiallyEqual(to: rhs.quarks[0])
-      && lhs.quarks[1].isPartiallyEqual(to: rhs.quarks[1])
+    lhs.charge == rhs.charge && lhs.color === rhs.color && lhs.quarks.elementsEqual(rhs.quarks)
   }
 }
