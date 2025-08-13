@@ -1,7 +1,7 @@
 <img width="6047" height="1024" alt="Logo" src="https://github.com/user-attachments/assets/a3d03dc6-5b02-4f78-b960-f68372a34b27" />
 
 <h1 align="center">Deus</h1>
-<div align="center"><blockquote cite="https://users.ece.cmu.edu/~gamvrosi/thelastq.html#:~:text=%22LET%20THERE%20BE%20LIGHT!%22">And AC said: “Let there be light!”</blockquote></div>
+<div align="center"><blockquote cite="https://users.ece.cmu.edu/~gamvrosi/thelastq.html#:~:text=%22LET%20THERE%20BE%20LIGHT!%22">And AC said: “LET THERE BE LIGHT!”</blockquote></div>
 <br/>
 <p>Deus is a simulator of particle physics whose aim is to simulate the genesis of the Universe, from the Big Bang (t → 0) to the dark ages (t ≈ 370,000 a). It can be adjusted in terms of the laws of physics which are applied, ranging from classical to quantum, allowing for sparing of computing resources for lower-range hardware and visualization of simulated scenarios wherein only Newtonian physics are employed versus those in which quantization is taken into consideration.</p>
 <p>Our current, state-of-the-art knowledge is still unable to state, precisely, <i>how</i> the Big Bang occurred — specifically up until the Planck epoch (t = 10⁻⁴³ s).</p>
