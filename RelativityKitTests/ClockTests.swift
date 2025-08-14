@@ -220,6 +220,7 @@ struct ClockTests {
   func removesUponReset(timeLapseListeners: [CountingTimeLapseListener]) async throws {
     for listener in timeLapseListeners { let _ = await clock.addTimeLapseListener(listener) }
     await clock.reset()
+    await clock.start()
     await clock.advanceTime(by: .milliseconds(2), spacing: .linear)
     for listener in timeLapseListeners { #expect(listener.count == 0) }
   }
