@@ -19,23 +19,36 @@ import Testing
 
 @testable import RelativityKit
 
-struct CountingTimeLapseListenerTests {
+@Suite("Duration+Strideable tests")
+struct DurationStrideableTests {
   @Test
-  func countIsZeroByDefault() throws { #expect(CountingTimeLapseListener().count == 0) }
+  func secondScaleIs1e18() { #expect(Duration.secondScaleAsInt128 == .init(1e18)) }
 
   @Test
-  func counts() async throws {
-    let listener = CountingTimeLapseListener()
-    let start = Duration.zero
-    let end = Duration.milliseconds(64)
-    for meantime in stride(from: start, to: end, by: Duration.tickScale) {
-      await listener.timeDidElapse(
-        from: start,
-        after: meantime == .zero ? nil : meantime - .milliseconds(1),
-        to: meantime,
-        toward: end
-      )
-    }
-    #expect(listener.count == 64)
+  func advancesByAttoseconds() {
+    #expect(
+      Duration.zero.advanced(by: Duration.secondScaleAsInt128 + 256)
+        == .init(secondsComponent: 1, attosecondsComponent: 256)
+    )
+  }
+
+  @Test
+  func advancesByNanoseconds() {
+    #expect(Duration.zero.advanced(by: .init(1e9)) == .nanoseconds(1))
+  }
+
+  @Test
+  func advancesByMicroseconds() {
+    #expect(Duration.zero.advanced(by: .init(1e12)) == .microseconds(1))
+  }
+
+  @Test
+  func advancesByMilliseconds() {
+    #expect(Duration.zero.advanced(by: .init(1e15)) == .milliseconds(1))
+  }
+
+  @Test
+  func advancesBySeconds() {
+    #expect(Duration.zero.advanced(by: Duration.secondScaleAsInt128) == .seconds(1))
   }
 }

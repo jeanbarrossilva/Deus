@@ -19,23 +19,29 @@ import Testing
 
 @testable import RelativityKit
 
-struct CountingTimeLapseListenerTests {
+@Suite("Clock+Duration tests")
+struct ClockDurationTests {
   @Test
-  func countIsZeroByDefault() throws { #expect(CountingTimeLapseListener().count == 0) }
+  func oneSubtickIsOneMicrosecond() {
+    #expect(Duration.subtick == .microseconds(1))
+    #expect(Duration.subticks(1) == .microseconds(1))
+  }
 
   @Test
-  func counts() async throws {
-    let listener = CountingTimeLapseListener()
-    let start = Duration.zero
-    let end = Duration.milliseconds(64)
-    for meantime in stride(from: start, to: end, by: Duration.tickScale) {
-      await listener.timeDidElapse(
-        from: start,
-        after: meantime == .zero ? nil : meantime - .milliseconds(1),
-        to: meantime,
-        toward: end
-      )
-    }
-    #expect(listener.count == 64)
+  func oneTickIsOneMillisecond() { #expect(Duration.tick == .milliseconds(1)) }
+
+  @Test
+  func comprisableSubtickCountIsAmountOfAttosecondsConvertedIntoMicroseconds() {
+    #expect(Duration.nanoseconds(2_500).comprisableSubtickCount == 2.5)
+  }
+
+  @Test
+  func nonIntegerAmountOfTicksCannotCompriseOnlyWholeTicks() {
+    #expect(!Duration.subticks(1_024).canOnlyCompriseWholeTicks)
+  }
+
+  @Test
+  func integerAmountOfTicksCanCompriseOnlyWholeTicks() {
+    #expect(Duration.subticks(2_000).canOnlyCompriseWholeTicks)
   }
 }

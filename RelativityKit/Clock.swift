@@ -18,6 +18,9 @@
 import Foundation
 import Geometry
 
+/// Closure which is executed whenever a ``Clock`` is started.
+typealias ClockDidStart = () -> Void
+
 /// Coordinates the passage of time in a simulated universe, allowing for the movement of bodies and
 /// other time-based changes to their properties (such as temperature, size, direction, velocity,
 /// route, etc.).
@@ -160,17 +163,13 @@ public actor Clock {
     /// - SeeAlso: ``Clock/advanceTime(by:spacing:)``
     fileprivate func space(timeLapse: ClosedRange<Duration>) -> any Sequence<Duration> {
       switch self {
-      case .extreme: return [timeLapse.lowerBound, timeLapse.upperBound]
+      case .extreme: [timeLapse.lowerBound, timeLapse.upperBound]
       case .linear:
-        return stride(
-          from: timeLapse.lowerBound,
-          through: timeLapse.upperBound,
-          by: Duration.subtick.attoseconds
-        )
+        stride(from: timeLapse.lowerBound, through: timeLapse.upperBound, by: Duration.subtickScale)
       case .eased:
-        return stride(from: 0.0, through: 1, by: 0.05).map { t in
+        stride(from: 0.0, through: 1, by: 0.05).map { t in
           .subticks(
-            Int(BezierCurve.eased[t].y * Double(timeLapse.upperBound.comprisableSubtickCount))
+            Int(BezierCurve.eased[t].y * .init(timeLapse.upperBound.comprisableSubtickCount))
           )
         }
       }
@@ -290,7 +289,7 @@ public actor Clock {
       for listener in timeLapseListeners {
         await listener.timeDidElapse(
           from: start,
-          after: meantime == start ? nil : max(.zero, meantime - .milliseconds(1)),
+          after: meantime == start ? nil : max(.zero, meantime - .tick),
           to: meantime,
           toward: end
         )
@@ -446,50 +445,14 @@ private final class ClockStartListener: Identifiable, Hashable {
   ///     is already started and has not *scheduled* the listening to its starts, but is, rather,
   ///     notifying this ``ClockStartListener`` immediately.
   ///
-  ///     Setting this to `false` with `repetition` as ``Repetition.once`` signals that an
-  ///     O(`clock.startListeners.count`) lookup for this ```ClockStartListener``` should be performed
+  ///     Setting this to `false` with `repetition` as ``Repetition/once`` signals that an
+  ///     O(`clock.startListeners.count`) lookup for this ``ClockStartListener`` should be performed
   ///     and it should, then, be removed from such `Array`. Means that the listening was, in fact,
   ///     scheduled.
   func notify(startOf clock: isolated Clock, isImmediate: Bool) {
     clockDidStart()
     guard !isImmediate else { return }
     repetition.didNotify(startOf: clock, to: self)
-  }
-}
-
-/// Closure which is executed whenever a ``Clock`` is started.
-typealias ClockDidStart = () -> Void
-
-extension Duration {
-  /// ``Duration`` by which a tick (1,000 subticks) is comprised: 1 ms.
-  ///
-  /// - SeeAlso: ``subtick``
-  static var tick = Duration.milliseconds(1)
-
-  /// ``Duration`` by which a subtick is comprised: 1 μs.
-  ///
-  /// - SeeAlso: ``tick``
-  fileprivate static var subtick = Duration.microseconds(1)
-
-  /// Whether an integer amount of ticks can be performed by a ``Clock`` within this ``Duration``.
-  fileprivate var canOnlyCompriseWholeTicks: Bool { attoseconds % Self.tick.attoseconds == 0 }
-
-  /// Amount of times a ``Clock`` can perform a subtick within this ``Duration``.
-  fileprivate var comprisableSubtickCount: Int128 { attoseconds / Self.subtick.attoseconds }
-
-  /// Makes a ``Duration`` within which a ``Clock`` can perform subticks the specified amount of
-  /// times.
-  ///
-  /// - Parameter count: Quantity of subticks comprised by the ``Duration``.
-  fileprivate static func subticks(_ count: Int) -> Duration { .microseconds(count) }
-}
-
-extension Duration: @retroactive Strideable {
-  public func distance(to other: Duration) -> Int128 { other.attoseconds - attoseconds }
-
-  public func advanced(by n: Int128) -> Duration {
-    guard n != 0 else { return self }
-    return Duration(attoseconds: attoseconds + n)
   }
 }
 
