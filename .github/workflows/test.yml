@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_26_beta.app/Contents/Developer
       - name: Test
         run: |
              mkdir build && xcodebuild \
