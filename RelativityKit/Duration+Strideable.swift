@@ -28,7 +28,7 @@ extension Duration: @retroactive Strideable {
   /// Amount of attoseconds within 1 s represented as a `Double`.
   private static let secondScaleAsDouble = 1e18
 
-  /// Minimum representable `Duration` of 2.923 × 10¹¹ a.
+  /// Minimum representable `Duration` of -2.923 × 10¹¹ a.
   private static let min = Self.init(secondsComponent: .min, attosecondsComponent: .min)
 
   /// Maximum representable `Duration` of 2.923 × 10¹¹ a.
