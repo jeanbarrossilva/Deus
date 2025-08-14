@@ -67,8 +67,31 @@ extension Duration: @retroactive Strideable {
         attosecondsComponent: clampedAdvancedAttosecondsComponent
       )
     }
+    guard let advancedSecondsComponent = Int64(exactly: advancedSeconds) else {
+      // Now, the same as above is done for the seconds component when it cannot be represented in
+      // only 64 bits. Some of it will be converted into attoseconds and added to the advanced
+      // attoseconds, resorting to returning the minimum or maximum duration in case it still
+      // overflows.
+      //
+      // This is way less significant than the previous case, given that ⌊log₂(1e18)⌋ + 1 (60) bits
+      // are required for representing as few as 1 s in attoseconds.
+      let clampedAdvancedSecondsComponent = Int64(clamping: advancedSeconds)
+      let remainingSecondsComponent = advancedSeconds - .init(clampedAdvancedSecondsComponent)
+      let clampedAdvancedAttosecondsComponent = Int64(
+        clamping: Int128(advancedAttosecondsComponent) + remainingSecondsComponent
+          * Self.secondScaleAsInt128
+      )
+      guard clampedAdvancedSecondsComponent > .min || clampedAdvancedAttosecondsComponent > .min
+      else { return .min }
+      guard clampedAdvancedSecondsComponent < .max || clampedAdvancedAttosecondsComponent < .max
+      else { return .max }
+      return .init(
+        secondsComponent: clampedAdvancedSecondsComponent,
+        attosecondsComponent: clampedAdvancedAttosecondsComponent
+      )
+    }
     return .init(
-      secondsComponent: Int64(clamping: advancedSeconds),
+      secondsComponent: advancedSecondsComponent,
       attosecondsComponent: advancedAttosecondsComponent
     )
   }
