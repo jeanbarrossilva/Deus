@@ -18,6 +18,7 @@
 		498FA2F52E2591E80058A9C8 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
 		498FA2F62E2591E80058A9C8 /* StandardModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EF5D582DE20D36008AFB31 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
+		49F1F4102E4E8BF700ABEF15 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 49F1F40F2E4E8BF700ABEF15 /* Numerics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F1F4102E4E8BF700ABEF15 /* Numerics in Frameworks */,
 				49EF5D582DE20D36008AFB31 /* StandardModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +543,7 @@
 			);
 			name = StandardModelTests;
 			packageProductDependencies = (
+				49F1F40F2E4E8BF700ABEF15 /* Numerics */,
 			);
 			productName = StandardKitTests;
 			productReference = 49EF5D572DE20D36008AFB31 /* StandardModelTests.xctest */;
@@ -1517,6 +1520,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		497244DD2E4A618100481D5B /* Numerics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 497244DC2E4A618100481D5B /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = Numerics;
+		};
+		49F1F40F2E4E8BF700ABEF15 /* Numerics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 497244DC2E4A618100481D5B /* XCRemoteSwiftPackageReference "swift-numerics" */;
 			productName = Numerics;
