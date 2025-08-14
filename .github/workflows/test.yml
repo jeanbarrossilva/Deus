@@ -15,6 +15,7 @@ jobs:
              mkdir build && xcodebuild \
              -scheme Deus \
              -destination 'platform=OS X,arch=${{ matrix.arch }}' \
+             -allowProvisioningUpdates CODE_SIGN_IDENTITY='-' \
              build test \
              | tee build/xcodebuild.log \
              | xcpretty -r junit --output build/reports/xcodebuild.xml && exit ${PIPESTATUS[0]}
