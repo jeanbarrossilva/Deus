@@ -17,8 +17,8 @@ jobs:
              -destination 'platform=OS X,arch=${{ matrix.arch }}' \
              -allowProvisioningUpdates CODE_SIGN_IDENTITY='-' \
              build test \
-             | tee build/xcodebuild.log \
-             | xcpretty -r junit --output build/reports/xcodebuild.xml && exit ${PIPESTATUS[0]}
+             | tee build/xcodebuild.log
+             exit ${PIPESTATUS[0]}
       - name: Archive report
         uses: actions/upload-artifact@v4
         with:
