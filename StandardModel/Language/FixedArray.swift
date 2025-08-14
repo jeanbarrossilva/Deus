@@ -15,31 +15,28 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
-import Testing
+/// An immutable array of fixed size.
+public class FixedArray<Element>: ExpressibleByArrayLiteral, Sequence {
+  /// Pointer to the first element allocated into the contiguous memory.
+  private var pointer: UnsafeMutablePointer<Element>
 
-@testable import StandardModel
+  public let startIndex: Int
+  public let endIndex: Int
 
-struct PositivePionTests {
-  private let upQuark = UpQuark(color: red)
-  private let downAntiquark = Anti(DownQuark(color: red))
-  private lazy var positivePion = upQuark + downAntiquark
+  deinit { pointer.deinitialize(count: count) }
 
-  @Test("u + d̄ → π⁺")
-  mutating func resultsFromCombiningAnUpQuarkAndADownAntiquark() {
-    #expect(positivePion.quarks.elementsEqual([.init(upQuark), .init(downAntiquark)]))
+  public required init(arrayLiteral elements: Element...) {
+    pointer = .allocate(capacity: elements.count)
+    for element in elements {
+      pointer.initialize(to: element)
+      pointer = pointer.successor()
+    }
+    pointer = pointer.advanced(by: -elements.count)
+    startIndex = elements.startIndex
+    endIndex = elements.endIndex
   }
+}
 
-  @Test
-  mutating func chargeIsOneE() {
-    #expect(positivePion.charge == Measurement(value: 1, unit: .elementary))
-  }
-
-  @Test
-  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
-    #expect(
-      positivePion.getMass(approximatedBy: .base)
-        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
-    )
-  }
+extension FixedArray: RandomAccessCollection {
+  public subscript(position: Int) -> Element { pointer[position] }
 }

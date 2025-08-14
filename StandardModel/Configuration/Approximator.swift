@@ -45,4 +45,3 @@ public enum Approximator<Approximation: Comparable> {
     }
   }
 }
- 

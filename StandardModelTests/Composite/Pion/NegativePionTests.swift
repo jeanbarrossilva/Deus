@@ -27,8 +27,7 @@ struct NegativePionTests {
 
   @Test("d + ū → π⁻")
   mutating func resultsFromCombiningADownQuarkAndAnUpAntiquark() {
-    #expect(negativePion.quarks[0].isPartiallyEqual(to: downQuark))
-    #expect(negativePion.quarks[1].isPartiallyEqual(to: upAntiquark))
+    #expect(negativePion.quarks.elementsEqual([.init(downQuark), .init(upAntiquark)]))
   }
 
   @Test

@@ -28,7 +28,7 @@ struct CountingTimeLapseListenerTests {
     let listener = CountingTimeLapseListener()
     let start = Duration.zero
     let end = Duration.milliseconds(64)
-    for meantime in stride(from: start, to: end, by: Duration.tick.attoseconds) {
+    for meantime in stride(from: start, to: end, by: Duration.tickScale) {
       await listener.timeDidElapse(
         from: start,
         after: meantime == .zero ? nil : meantime - .milliseconds(1),

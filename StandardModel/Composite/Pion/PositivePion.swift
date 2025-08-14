@@ -24,9 +24,9 @@ import Foundation
 public struct PositivePion: Equatable, Pion {
   public let symbol = "π⁺"
   public let charge = Measurement(value: 1, unit: UnitElectricCharge.elementary)
-  public let quarks: InlineArray<2, any QuarkLike>
+  public let quarks: FixedArray<AnyQuarkLike>
 
-  fileprivate init(quarks: InlineArray<2, any QuarkLike>) { self.quarks = quarks }
+  fileprivate init(quarks: FixedArray<AnyQuarkLike>) { self.quarks = quarks }
 
   public func getMass(
     approximatedBy approximator: Approximator<Measurement<UnitMass>>
@@ -43,6 +43,6 @@ extension UpQuark where Color: SpecificColor {
   ///   - rhs: Down antiquark to be combined to `lhs`.
   /// - Returns: Result of the u + d̄ combination: a ``PositivePion``.
   static func + (lhs: Self, rhs: Anti<DownQuark<Self.Color>>) -> PositivePion {
-    PositivePion(quarks: [lhs, rhs])
+    PositivePion(quarks: [.init(lhs), .init(rhs)])
   }
 }

@@ -25,9 +25,6 @@ struct ClockTests {
   init() async { await clock.start() }
 
   @Test
-  func tickDurationIsOneMs() { #expect(Duration.tick == .milliseconds(1)) }
-
-  @Test
   func virtualModeIsDefaultOne() async throws {
     try await Task.sleep(for: .microseconds(2))
     #expect(await clock.elapsedTime == .zero)
@@ -53,7 +50,6 @@ struct ClockTests {
   @Test
   func elapsedTimeIncreasesPerSubtick() async throws {
     await clock.advanceTime(by: .microseconds(2), spacing: .linear)
-    print(await clock.elapsedTime)
     #expect(await clock.elapsedTime == .microseconds(2))
     await clock.reset()
   }
@@ -177,7 +173,7 @@ struct ClockTests {
     let _ = await clock.addTimeLapseListener(listener)
     let _ = await clock.addTimeLapseListener { _, _, current, _ in
       switch listener.count {
-      case 1: #expect(current == .milliseconds(0))
+      case 1: #expect(current == .zero)
       case 2: #expect(current == .milliseconds(56))
       case 3: #expect(current == .milliseconds(112))
       case 4: #expect(current == .milliseconds(180))

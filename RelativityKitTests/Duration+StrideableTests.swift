@@ -15,31 +15,40 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
 import Testing
 
-@testable import StandardModel
+@testable import RelativityKit
 
-struct PositivePionTests {
-  private let upQuark = UpQuark(color: red)
-  private let downAntiquark = Anti(DownQuark(color: red))
-  private lazy var positivePion = upQuark + downAntiquark
-
-  @Test("u + d̄ → π⁺")
-  mutating func resultsFromCombiningAnUpQuarkAndADownAntiquark() {
-    #expect(positivePion.quarks.elementsEqual([.init(upQuark), .init(downAntiquark)]))
-  }
+@Suite("Duration+Strideable tests")
+struct DurationStrideableTests {
+  @Test
+  func secondScaleIs1e18() { #expect(Duration.secondScaleAsInt128 == .init(1e18)) }
 
   @Test
-  mutating func chargeIsOneE() {
-    #expect(positivePion.charge == Measurement(value: 1, unit: .elementary))
-  }
-
-  @Test
-  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
+  func advancesByAttoseconds() {
     #expect(
-      positivePion.getMass(approximatedBy: .base)
-        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
+      Duration.zero.advanced(by: Duration.secondScaleAsInt128 + 256)
+        == .init(secondsComponent: 1, attosecondsComponent: 256)
     )
+  }
+
+  @Test
+  func advancesByNanoseconds() {
+    #expect(Duration.zero.advanced(by: .init(1e9)) == .nanoseconds(1))
+  }
+
+  @Test
+  func advancesByMicroseconds() {
+    #expect(Duration.zero.advanced(by: .init(1e12)) == .microseconds(1))
+  }
+
+  @Test
+  func advancesByMilliseconds() {
+    #expect(Duration.zero.advanced(by: .init(1e15)) == .milliseconds(1))
+  }
+
+  @Test
+  func advancesBySeconds() {
+    #expect(Duration.zero.advanced(by: Duration.secondScaleAsInt128) == .seconds(1))
   }
 }

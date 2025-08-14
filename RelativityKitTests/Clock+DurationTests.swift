@@ -15,6 +15,33 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-extension InlineArray: @retroactive Sequence {}
+import Testing
 
-extension InlineArray: @retroactive Collection {}
+@testable import RelativityKit
+
+@Suite("Clock+Duration tests")
+struct ClockDurationTests {
+  @Test
+  func oneSubtickIsOneMicrosecond() {
+    #expect(Duration.subtick == .microseconds(1))
+    #expect(Duration.subticks(1) == .microseconds(1))
+  }
+
+  @Test
+  func oneTickIsOneMillisecond() { #expect(Duration.tick == .milliseconds(1)) }
+
+  @Test
+  func comprisableSubtickCountIsAmountOfAttosecondsConvertedIntoMicroseconds() {
+    #expect(Duration.nanoseconds(2_500).comprisableSubtickCount == 2.5)
+  }
+
+  @Test
+  func nonIntegerAmountOfTicksCannotCompriseOnlyWholeTicks() {
+    #expect(!Duration.subticks(1_024).canOnlyCompriseWholeTicks)
+  }
+
+  @Test
+  func integerAmountOfTicksCanCompriseOnlyWholeTicks() {
+    #expect(Duration.subticks(2_000).canOnlyCompriseWholeTicks)
+  }
+}
