@@ -15,11 +15,28 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Testing
+/// An immutable array of fixed size.
+public class FixedArray<Element>: ExpressibleByArrayLiteral, Sequence {
+  /// Pointer to the first element allocated into the contiguous memory.
+  private var pointer: UnsafeMutablePointer<Element>
 
-@testable import StandardModel
+  public let startIndex: Int
+  public let endIndex: Int
 
-struct InlineArrayTests {
-  @Test
-  func initializesFromLiteral() { #expect(InlineArray(arrayLiteral: 2, 4).elementsEqual([2, 4])) }
+  deinit { pointer.deinitialize(count: count) }
+
+  public required init(arrayLiteral elements: Element...) {
+    pointer = .allocate(capacity: elements.count)
+    for element in elements {
+      pointer.initialize(to: element)
+      pointer = pointer.successor()
+    }
+    pointer = pointer.advanced(by: -elements.count)
+    startIndex = elements.startIndex
+    endIndex = elements.endIndex
+  }
+}
+
+extension FixedArray: RandomAccessCollection {
+  public subscript(position: Int) -> Element { pointer[position] }
 }

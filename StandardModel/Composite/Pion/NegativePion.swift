@@ -24,9 +24,9 @@ import Foundation
 public struct NegativePion: Equatable, Pion {
   public let symbol = "π⁻"
   public let charge = Measurement(value: -1, unit: UnitElectricCharge.elementary)
-  public let quarks: InlineArray<AnyQuarkLike>
+  public let quarks: FixedArray<AnyQuarkLike>
 
-  init(quarks: InlineArray<AnyQuarkLike>) { self.quarks = quarks }
+  init(quarks: FixedArray<AnyQuarkLike>) { self.quarks = quarks }
 
   public func getMass(
     approximatedBy approximator: Approximator<Measurement<UnitMass>>

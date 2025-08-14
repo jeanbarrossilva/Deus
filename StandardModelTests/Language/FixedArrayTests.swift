@@ -15,23 +15,11 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-/// An immutable container into which elements are laid out contiguously.
-public struct InlineArray<Element> {
-  /// Contiguous memory in which the elements are allocated.
-  private var buffer: UnsafeMutableBufferPointer<Element>?
-}
+import Testing
 
-extension InlineArray: ExpressibleByArrayLiteral {
-  public init(arrayLiteral elements: Element...) {
-    elements.withUnsafeBytes { body in buffer = .init(mutating: body.bindMemory(to: Element.self)) }
-  }
-}
+@testable import StandardModel
 
-extension InlineArray: Sequence {}
-
-extension InlineArray: RandomAccessCollection {
-  public var startIndex: Int { buffer!.startIndex }
-  public var endIndex: Int { buffer!.endIndex }
-
-  public subscript(position: Int) -> Element { borrowing _read { yield buffer![position] } }
+struct FixedArrayTests {
+  @Test
+  func initializesFromLiteral() { #expect(FixedArray(arrayLiteral: 2, 4).elementsEqual([2, 4])) }
 }

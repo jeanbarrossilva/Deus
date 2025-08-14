@@ -42,7 +42,7 @@ import Foundation
 public protocol Hadron: ColoredParticle<White> {
   /// ``Quark``s by which this ``Hadron`` is composed, bound by strong force via the gluon
   /// ``Particle``s.
-  var quarks: InlineArray<AnyQuarkLike> { get }
+  var quarks: FixedArray<AnyQuarkLike> { get }
 }
 
 extension Hadron {
