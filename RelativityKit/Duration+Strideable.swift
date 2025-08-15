@@ -44,7 +44,7 @@ extension Duration: @retroactive Strideable {
     guard let advancedAttosecondsComponent = Int64(exactly: advancedAttosecondsComponent) else {
       // The attoseconds component overflowing the capacity of a 64-bit integer does not necessarily
       // result in us having to return the minimum or maximum duration, since we can still fall back
-      // to representing most of the duration in seconds — with 1 s being 1e-18 attoseconds and,
+      // to representing most of the duration in seconds — with 1e18 attoseconds being only 1 s and,
       // consequently, requiring less bits.
       //
       // Below, the attoseconds component is clamped (set as either Int64.min or Int64.max), while
