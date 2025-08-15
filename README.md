@@ -34,7 +34,7 @@
 </figure>
 <h2>Special thanks to…</h2>
 <ol>
-  <li><b>Bernardo Benfeitas</b> and <b>Miguel Aloisio</b>, with both having presented <cite>Interstellar</cite>, one of the greatest inspirations for Deus, to the author;</li>
+  <li><b>Bernardo Benfeitas</b> and <b>Miguel Aloisio</b>, with both having presented the movie <a href="https://en.wikipedia.org/wiki/Interstellar_(film)" target="_blank"><cite>Interstellar</cite></a>, one of the greatest inspirations for Deus, to the author;</li>
   <li><b>David Tong</b> and <b>Sean Carroll</b>, professors by whom the author was introduced to quantum mechanics in their respective lectures <a href="https://youtu.be/zNVQfWC_evg" target="_blank"><cite>The real building blocks of the Universe (Discourse)</cite></a> and <a href="https://youtu.be/5hVmeOCJjOU" target="_blank"><cite>A brief history of quantum mechanics</cite></a>; and</li>
   <li><b>Savannah Brown</b>, from whom the author learned about <a href="https://users.ece.cmu.edu/~gamvrosi/thelastq.html" target="_blank"><cite>The Last Question</cite></a> by Isaac Asimov, through her essay <a href="https://youtu.be/PDFUgsE6odU" target="_blank"><cite>20 minutes on whether or not the world is getting worse</cite></a>.</li>
 </ol>
