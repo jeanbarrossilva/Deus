@@ -30,11 +30,6 @@ private struct CubicBezierCurve: BezierCurveProtocol {
   /// ``Control`` of the end endpoint.
   let end: Control
 
-  init(start: Control, end: Control) {
-    self.start = start
-    self.end = end
-  }
-
   subscript(_ t: Double) -> Point {
     Self.assertIsInRange(t: t)
     let (p0, p1, p2, p3, y) = (

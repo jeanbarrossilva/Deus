@@ -16,15 +16,25 @@
 # see https://www.gnu.org/licenses.
 # ===--------------------------------------------------------------------------------------------===
 
-# Configures the Python virtual environment (venv).
-python3 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
+# /subscripts/_subscript.sh
+#
+# Performs the initial configuration of a subscript. Must be the first execution of each subscript.
 
-# Generates the boilerplate.
-find . -name '*.gyb' \
-  | while read file; do ./gyb.py --line-directive '' -o "${file%.gyb}.swift" "$file"; done
+set -e
 
-# Deconfigures the venv.
-deactivate
+#
+# Asserts that the caller process has been executed by Xcode and/or the main script, Deus.sh.
+# --------------------------------------------------------------------------------------------------
+#
+# - Parameters: none
+# - Returns:    void
+assert_is_attached() {
+  local is_attached=$([[ -n "$SRCROOT" ]]; echo $?)
+  if [[ "$is_attached" -eq 0 ]]; then return; fi
+  echo "This script cannot be executed directly. Its execution should be triggered by either an \
+Xcode build of the project or the main script, Deus.sh, located at the directory of the \
+project."
+  exit 1
+}
+
+assert_is_attached
