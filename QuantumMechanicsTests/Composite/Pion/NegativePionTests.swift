@@ -16,36 +16,30 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import Foundation
-import Numerics
 import Testing
 
-@testable import StandardModel
+@testable import QuantumMechanics
 
-struct SymmetryTests {
-  @Suite("U1")
-  struct U1Tests {
-    @Test
-    func fieldIsUntransformedWhenUnrotated() {
-      #expect(Complex(2, 4).u1(by: .zero) == Complex(2, 4))
-    }
+struct NegativePionTests {
+  private let downQuark = DownQuark(color: red)
+  private let upAntiquark = Anti(UpQuark(color: red))
+  private lazy var negativePion = downQuark + upAntiquark
 
-    @Test(
-      arguments: stride(from: 2, to: 64, by: 2).map {
-        Measurement(value: .pi * $0, unit: UnitAngle.radians)
-      }
+  @Test("d + ū → π⁻")
+  mutating func resultsFromCombiningADownQuarkAndAnUpAntiquark() {
+    #expect(negativePion.quarks.elementsEqual([.init(downQuark), .init(upAntiquark)]))
+  }
+
+  @Test
+  mutating func chargeIsNegativeOneE() {
+    #expect(negativePion.charge == Measurement(value: -1, unit: .elementary))
+  }
+
+  @Test
+  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
+    #expect(
+      negativePion.getMass(approximatedBy: .base)
+        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
     )
-    func fieldIsUntransformedUponFullTurn(of angle: Measurement<UnitAngle>) {
-      #expect(Complex(2, 4).u1(by: angle).isApproximatelyEqual(to: Complex(2, 4)))
-    }
-
-    @Test
-    func fieldIsTransformedWhenRotatedByNonGroupIdentity() {
-      #expect(
-        Complex(2, 4).u1(by: Measurement(value: 2, unit: UnitAngle.radians)).isApproximatelyEqual(
-          to: Complex(-4.46, 0.15),
-          relativeTolerance: 0.01
-        )
-      )
-    }
   }
 }

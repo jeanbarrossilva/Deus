@@ -17,7 +17,7 @@
 
 import Testing
 
-@testable import StandardModel
+@testable import QuantumMechanics
 
 @Suite("RandomAccessCollection+Pair tests")
 struct RandomAccessCollectionPairTests {

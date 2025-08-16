@@ -17,7 +17,7 @@
 
 import AppKit
 import RealityKit
-import StandardModel
+import QuantumMechanics
 import Testing
 
 @testable import ObservationKit

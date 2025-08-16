@@ -15,31 +15,27 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
 import Testing
 
-@testable import StandardModel
+@testable import QuantumMechanics
 
-struct NegativePionTests {
-  private let downQuark = DownQuark(color: red)
-  private let upAntiquark = Anti(UpQuark(color: red))
-  private lazy var negativePion = downQuark + upAntiquark
-
-  @Test("d + ū → π⁻")
-  mutating func resultsFromCombiningADownQuarkAndAnUpAntiquark() {
-    #expect(negativePion.quarks.elementsEqual([.init(downQuark), .init(upAntiquark)]))
-  }
-
-  @Test
-  mutating func chargeIsNegativeOneE() {
-    #expect(negativePion.charge == Measurement(value: -1, unit: .elementary))
-  }
-
-  @Test
-  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
-    #expect(
-      negativePion.getMass(approximatedBy: .base)
-        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
+struct QuarkLikeTests {
+  @Suite("Charge")
+  struct ChargeTests {
+    @Test(
+      arguments: AnyQuarkLike.discretion.filter({ quarkLike in quarkLike.symbol.contains(#/u|c|t/#)
+        })
     )
+    func chargeOfUpTypeQuarkIsTwoThirdsOfE(_ quarkLike: AnyQuarkLike) {
+      #expect(quarkLike.charge == twoThirdsOfE)
+    }
+
+    @Test(
+      arguments: AnyQuarkLike.discretion.filter({ quarkLike in quarkLike.symbol.contains(#/d|s|b/#)
+        })
+    )
+    func chargeOfDownTypeQuarkIsNegativeOneThirdOfE(_ quarkLike: AnyQuarkLike) {
+      #expect(quarkLike.charge == negativeOneThirdOfE)
+    }
   }
 }
