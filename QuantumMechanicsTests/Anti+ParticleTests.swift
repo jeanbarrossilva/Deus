@@ -15,19 +15,25 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
+import Foundation
 import Testing
 
-@testable import StandardModel
+@testable import QuantumMechanics
 
-@Suite("Particle tests")
-struct ParticleTests {
+struct AntiparticleTests {
   @Test
-  func arePartiallyEqual() {
-    #expect(UpQuark(color: red).isPartiallyEqual(to: UpQuark(color: green)))
+  func chargeIsOpposite() {
+    #expect(Anti(UpQuark(color: red)).charge == Measurement(value: -2 / 3, unit: .elementary))
   }
 
   @Test
-  func areNotPartiallyEqual() {
-    #expect(!UpQuark(color: red).isPartiallyEqual(to: DownQuark(color: red)))
+  func massIsSameAsOfCounterpart() {
+    let particle = UpQuark(color: red)
+    #expect(
+      Anti(particle).getMass(approximatedBy: .base) == particle.getMass(approximatedBy: .base)
+    )
   }
+
+  @Test
+  func symbolHasOverbar() { #expect(Anti(UpQuark(color: red)).symbol == "u̅") }
 }

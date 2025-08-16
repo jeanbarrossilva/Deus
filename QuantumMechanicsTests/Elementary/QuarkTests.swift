@@ -18,7 +18,7 @@
 import Foundation
 import Testing
 
-@testable import StandardModel
+@testable import QuantumMechanics
 
 struct UpQuarkTests {
   @Test(arguments: AnySingleColor.discretion.map({ color in UpQuark(color: color) }))

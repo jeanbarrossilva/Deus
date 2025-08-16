@@ -18,7 +18,7 @@
 /// Base protocol to which ``ColoredParticle``s and colored antiparticles conform.
 public protocol ColoredParticleLike<Color>: ParticleLike {
   /// The specific type of ``Color``.
-  associatedtype Color: StandardModel.Color
+  associatedtype Color: QuantumMechanics.Color
 
   /// Measured transformation under the SU(3) symmetry.
   var color: Color { get }

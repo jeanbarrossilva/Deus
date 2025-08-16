@@ -17,7 +17,7 @@
 
 import AppKit
 import RealityKit
-import StandardModel
+import QuantumMechanics
 
 /// Shape of a quark-like: a sphere.
 private let mesh = MeshResource.generateSphere(radius: 0.2)

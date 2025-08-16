@@ -15,9 +15,9 @@
 		497244DE2E4A618100481D5B /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 497244DD2E4A618100481D5B /* Numerics */; };
 		498FA27E2E2459DE0058A9C8 /* ObservationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; };
 		498FA27F2E2459DE0058A9C8 /* ObservationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		498FA2F52E2591E80058A9C8 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
-		498FA2F62E2591E80058A9C8 /* StandardModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49EF5D582DE20D36008AFB31 /* StandardModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */; };
+		498FA2F52E2591E80058A9C8 /* QuantumMechanics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* QuantumMechanics.framework */; };
+		498FA2F62E2591E80058A9C8 /* QuantumMechanics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* QuantumMechanics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49EF5D582DE20D36008AFB31 /* QuantumMechanics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EF5D4F2DE20D36008AFB31 /* QuantumMechanics.framework */; };
 		49F1F4102E4E8BF700ABEF15 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 49F1F40F2E4E8BF700ABEF15 /* Numerics */; };
 /* End PBXBuildFile section */
 
@@ -113,7 +113,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				498FA2F62E2591E80058A9C8 /* StandardModel.framework in Embed Frameworks */,
+				498FA2F62E2591E80058A9C8 /* QuantumMechanics.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,8 +131,8 @@
 		4960F2542DDF38D3002EF7C0 /* Deus.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deus.xctestplan; sourceTree = "<group>"; };
 		496813642E4643BA00B22450 /* ObservationKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObservationKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObservationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StandardModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49EF5D572DE20D36008AFB31 /* StandardModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StandardModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49EF5D4F2DE20D36008AFB31 /* QuantumMechanics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuantumMechanics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49EF5D572DE20D36008AFB31 /* QuantumMechanicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuantumMechanicsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -171,14 +171,14 @@
 			path = ObservationKit;
 			sourceTree = "<group>";
 		};
-		49EF5D502DE20D36008AFB31 /* StandardModel */ = {
+		49EF5D502DE20D36008AFB31 /* QuantumMechanics */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = StandardModel;
+			path = QuantumMechanics;
 			sourceTree = "<group>";
 		};
-		49EF5D5D2DE20D36008AFB31 /* StandardModelTests */ = {
+		49EF5D5D2DE20D36008AFB31 /* QuantumMechanicsTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = StandardModelTests;
+			path = QuantumMechanicsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -233,7 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				498FA2F52E2591E80058A9C8 /* StandardModel.framework in Frameworks */,
+				498FA2F52E2591E80058A9C8 /* QuantumMechanics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49F1F4102E4E8BF700ABEF15 /* Numerics in Frameworks */,
-				49EF5D582DE20D36008AFB31 /* StandardModel.framework in Frameworks */,
+				49EF5D582DE20D36008AFB31 /* QuantumMechanics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,15 +279,15 @@
 				4960AB562DDCE34E00EB1410 /* GeometryTests */,
 				494EFBFA2DDF36B100C66063 /* RelativityKit */,
 				494EFC072DDF36B200C66063 /* RelativityKitTests */,
-				49EF5D502DE20D36008AFB31 /* StandardModel */,
-				49EF5D5D2DE20D36008AFB31 /* StandardModelTests */,
+				49EF5D502DE20D36008AFB31 /* QuantumMechanics */,
+				49EF5D5D2DE20D36008AFB31 /* QuantumMechanicsTests */,
 				498FA26C2E2459DE0058A9C8 /* ObservationKit */,
 				496813652E4643BA00B22450 /* ObservationKitTests */,
 				4960AB6D2DDCE45D00EB1410 /* Frameworks */,
 				494EFBF92DDF36B100C66063 /* RelativityKit.framework */,
 				494EFC012DDF36B200C66063 /* RelativityKitTests.xctest */,
-				49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */,
-				49EF5D572DE20D36008AFB31 /* StandardModelTests.xctest */,
+				49EF5D4F2DE20D36008AFB31 /* QuantumMechanics.framework */,
+				49EF5D572DE20D36008AFB31 /* QuantumMechanicsTests.xctest */,
 				498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */,
 				496813642E4643BA00B22450 /* ObservationKitTests.xctest */,
 			);
@@ -494,9 +494,9 @@
 			productReference = 498FA26B2E2459DE0058A9C8 /* ObservationKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		49EF5D4E2DE20D36008AFB31 /* StandardModel */ = {
+		49EF5D4E2DE20D36008AFB31 /* QuantumMechanics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49EF5D642DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "StandardModel" */;
+			buildConfigurationList = 49EF5D642DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "QuantumMechanics" */;
 			buildPhases = (
 				49EF5D4A2DE20D36008AFB31 /* Headers */,
 				49EF5D4B2DE20D36008AFB31 /* Sources */,
@@ -510,19 +510,19 @@
 				497244DB2E4A616100481D5B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				49EF5D502DE20D36008AFB31 /* StandardModel */,
+				49EF5D502DE20D36008AFB31 /* QuantumMechanics */,
 			);
-			name = StandardModel;
+			name = QuantumMechanics;
 			packageProductDependencies = (
 				497244DD2E4A618100481D5B /* Numerics */,
 			);
 			productName = StandardKit;
-			productReference = 49EF5D4F2DE20D36008AFB31 /* StandardModel.framework */;
+			productReference = 49EF5D4F2DE20D36008AFB31 /* QuantumMechanics.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		49EF5D562DE20D36008AFB31 /* StandardModelTests */ = {
+		49EF5D562DE20D36008AFB31 /* QuantumMechanicsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49EF5D672DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "StandardModelTests" */;
+			buildConfigurationList = 49EF5D672DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "QuantumMechanicsTests" */;
 			buildPhases = (
 				49EF5D532DE20D36008AFB31 /* Sources */,
 				49EF5D542DE20D36008AFB31 /* Frameworks */,
@@ -533,14 +533,14 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				49EF5D5D2DE20D36008AFB31 /* StandardModelTests */,
+				49EF5D5D2DE20D36008AFB31 /* QuantumMechanicsTests */,
 			);
-			name = StandardModelTests;
+			name = QuantumMechanicsTests;
 			packageProductDependencies = (
 				49F1F40F2E4E8BF700ABEF15 /* Numerics */,
 			);
 			productName = StandardKitTests;
-			productReference = 49EF5D572DE20D36008AFB31 /* StandardModelTests.xctest */;
+			productReference = 49EF5D572DE20D36008AFB31 /* QuantumMechanicsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -605,8 +605,8 @@
 				4960AB4F2DDCE34E00EB1410 /* GeometryTests */,
 				494EFBF82DDF36B100C66063 /* RelativityKit */,
 				494EFC002DDF36B200C66063 /* RelativityKitTests */,
-				49EF5D4E2DE20D36008AFB31 /* StandardModel */,
-				49EF5D562DE20D36008AFB31 /* StandardModelTests */,
+				49EF5D4E2DE20D36008AFB31 /* QuantumMechanics */,
+				49EF5D562DE20D36008AFB31 /* QuantumMechanicsTests */,
 				498FA26A2E2459DE0058A9C8 /* ObservationKit */,
 				496813632E4643BA00B22450 /* ObservationKitTests */,
 			);
@@ -800,7 +800,7 @@
 		};
 		498FA2F82E2591E80058A9C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 49EF5D4E2DE20D36008AFB31 /* StandardModel */;
+			target = 49EF5D4E2DE20D36008AFB31 /* QuantumMechanics */;
 			targetProxy = 498FA2F72E2591E80058A9C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1206,7 +1206,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.StandardKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.QuantumMechanics;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1265,7 +1265,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.StandardKitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbarrossilva.deus.QuantumMechanicsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1478,7 +1478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49EF5D642DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "StandardModel" */ = {
+		49EF5D642DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "QuantumMechanics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49EF5D652DE20D36008AFB31 /* Debug */,
@@ -1487,7 +1487,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49EF5D672DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "StandardModelTests" */ = {
+		49EF5D672DE20D36008AFB31 /* Build configuration list for PBXNativeTarget "QuantumMechanicsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49EF5D682DE20D36008AFB31 /* Debug */,

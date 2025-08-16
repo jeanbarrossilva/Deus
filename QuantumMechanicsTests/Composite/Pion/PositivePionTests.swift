@@ -15,11 +15,31 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
+import Foundation
 import Testing
 
-@testable import StandardModel
+@testable import QuantumMechanics
 
-struct FixedArrayTests {
+struct PositivePionTests {
+  private let upQuark = UpQuark(color: red)
+  private let downAntiquark = Anti(DownQuark(color: red))
+  private lazy var positivePion = upQuark + downAntiquark
+
+  @Test("u + d̄ → π⁺")
+  mutating func resultsFromCombiningAnUpQuarkAndADownAntiquark() {
+    #expect(positivePion.quarks.elementsEqual([.init(upQuark), .init(downAntiquark)]))
+  }
+
   @Test
-  func initializesFromLiteral() { #expect(FixedArray(arrayLiteral: 2, 4).elementsEqual([2, 4])) }
+  mutating func chargeIsOneE() {
+    #expect(positivePion.charge == Measurement(value: 1, unit: .elementary))
+  }
+
+  @Test
+  mutating func massIsOneHundredAndThirtyNinePointFiftySevenThousandAndThirtyNineGeV() {
+    #expect(
+      positivePion.getMass(approximatedBy: .base)
+        == Measurement(value: 139.57039, unit: .gigaelectronvolt)
+    )
+  }
 }
