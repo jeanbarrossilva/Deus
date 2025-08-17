@@ -17,25 +17,11 @@
 
 import Testing
 
-@testable import StandardModel
+@testable import QuantumMechanics
 
-struct QuarkLikeTests {
-  @Suite("Charge")
-  struct ChargeTests {
-    @Test(
-      arguments: AnyQuarkLike.discretion.filter({ quarkLike in quarkLike.symbol.contains(#/u|c|t/#)
-        })
-    )
-    func chargeOfUpTypeQuarkIsTwoThirdsOfE(_ quarkLike: AnyQuarkLike) {
-      #expect(quarkLike.charge == twoThirdsOfE)
-    }
-
-    @Test(
-      arguments: AnyQuarkLike.discretion.filter({ quarkLike in quarkLike.symbol.contains(#/d|s|b/#)
-        })
-    )
-    func chargeOfDownTypeQuarkIsNegativeOneThirdOfE(_ quarkLike: AnyQuarkLike) {
-      #expect(quarkLike.charge == negativeOneThirdOfE)
-    }
+struct ApproximatorTests {
+  @Test
+  func baseApproximatorApproximatesToExactBaseValue() {
+    #expect(Approximator.base.approximate(2, 0.5, 0.2) == 2)
   }
 }

@@ -16,7 +16,7 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import RealityKit
-import StandardModel
+import QuantumMechanics
 import SwiftUI
 
 /// `View` by which a simulation of particle physics is displayed.

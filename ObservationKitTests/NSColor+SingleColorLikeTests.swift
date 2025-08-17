@@ -16,7 +16,7 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import AppKit
-import StandardModel
+import QuantumMechanics
 import Testing
 
 @testable import ObservationKit
