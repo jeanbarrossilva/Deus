@@ -153,7 +153,7 @@ extension TwoD where Self: CustomStringConvertible {
 
 /// An exact location in a 2D plane.
 public struct Point: TwoD {
-  public static var zero = Self.init(x: 0, y: 0)
+  public static let zero = Self.init(x: 0, y: 0)
 
   public let x: Double
   public let y: Double
@@ -162,31 +162,4 @@ public struct Point: TwoD {
     self.x = x
     self.y = y
   }
-}
-
-/// Movement across a bidimensional plane.
-public final class Vector: TwoD {
-  public static var zero = Vector(x: 0, y: 0)
-
-  /// Offset in the x-axis relative to a previous  ``Vector``.
-  public let x: Double
-
-  /// Offset in the y-axis relative to a previous ``Vector``.
-  public let y: Double
-
-  /// Distance between the zero ``Vector`` and this one; is, essentially, its length.
-  public private(set) lazy var module = (x * x + y * y).squareRoot()
-
-  /// ``Vector`` whose direction is the same as that of this one, but with a module of 1.
-  public private(set) lazy var unitary =
-    self === Self.zero ? nil : module == 1 ? self : Self.at(x: x / module, y: y / module)
-
-  public init(x: Double, y: Double) {
-    self.x = x
-    self.y = y
-  }
-
-  public static func < (lhs: Vector, rhs: Vector) -> Bool { lhs.module < rhs.module }
-
-  public static func > (lhs: Vector, rhs: Vector) -> Bool { lhs.module > rhs.module }
 }
