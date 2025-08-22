@@ -44,9 +44,9 @@ private struct CubicBezierCurve: BezierCurveProtocol {
 /// comprises a controlled ``Point`` and another one which controls it: its control ``Point``. The
 /// first is positioned on the curve in relation to the latter (which is not, itself, part of the
 /// curve).
-public struct Control {
+public struct Control: Sendable {
   /// ``Control`` whose both ``Point``s are (0, 0).
-  static var zero = Control(controller: .zero, controllee: .zero)
+  static let zero = Self.init(controller: .zero, controllee: .zero)
 
   /// ``Point`` which influences the ``controllee`` by arching the curve toward itself.
   fileprivate let controller: Point
@@ -82,7 +82,7 @@ extension Point {
 }
 
 /// Parametric curve defined by a set of ``Point``s.
-public protocol BezierCurveProtocol {
+public protocol BezierCurveProtocol: Sendable {
   /// Obtains a ``Point`` in this curve.
   ///
   /// - Parameter t: Progression across the curve on which the ``Point`` is.
@@ -113,7 +113,7 @@ public struct BezierCurve {
   /// - Parameters:
   ///   - start: P₀ = `start.controllee` and P₁ = `start.controller`.
   ///   - end: P₂ = `end.controller` and P₃ = `end.controllee`.
-  public static func make(from start: Control, to end: Control) -> any BezierCurveProtocol {
+  public static func make(from start: Control, to end: Control) -> some BezierCurveProtocol {
     CubicBezierCurve(start: start, end: end)
   }
 }

@@ -18,7 +18,7 @@
 import Foundation
 
 /// Abstraction of an exact location on or movement across a 2D plane.
-public protocol TwoD: AdditiveArithmetic, CustomStringConvertible {
+public protocol TwoD: AdditiveArithmetic, CustomStringConvertible, Sendable {
   /// Final position in the x-axis.
   var x: Double { get }
 

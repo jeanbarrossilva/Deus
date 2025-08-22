@@ -20,6 +20,7 @@ import RealityKit
 import QuantumMechanics
 
 /// Shape of a quark-like: a sphere.
+@MainActor
 private let mesh = MeshResource.generateSphere(radius: 0.2)
 
 extension Entity {

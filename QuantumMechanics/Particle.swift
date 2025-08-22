@@ -18,7 +18,7 @@
 import Foundation
 
 /// Base protocol to which ``Particle``s and antiparticles conform.
-public protocol ParticleLike: Comparable {
+public protocol ParticleLike: Comparable, Sendable {
   /// Intrinsic angular momentum of this type of ``ParticleLike``.
   var spin: Spin { get }
 

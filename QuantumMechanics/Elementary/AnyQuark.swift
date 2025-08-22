@@ -20,9 +20,9 @@ import Foundation
 /// ``QuarkLike`` whose flavor information has been erased.
 public struct AnyQuarkLike: Discrete, QuarkLike {
   /// ``Quark`` based on which this one was initialized.
-  let base: any QuarkLike
+  let base: any QuarkLike & Sendable
 
-  public static var discretion: [Self] = AnyQuark.discretion.flatMap { quark in
+  public static let discretion: [Self] = AnyQuark.discretion.flatMap { quark in
     [.init(quark), .init(Anti(quark))]
   }
 
@@ -31,7 +31,7 @@ public struct AnyQuarkLike: Discrete, QuarkLike {
   public let symbol: String
   public let color: AnySingleColorLike
 
-  public init(_ base: any QuarkLike) {
+  public init(_ base: some QuarkLike) {
     if let base = base as? Self {
       self = base
     } else {
@@ -59,7 +59,7 @@ public struct AnyQuark: Discrete, Quark {
   /// ``Quark`` based on which this one was initialized.
   let base: any QuarkLike
 
-  public static var discretion: [Self] = AnySingleColor.discretion.flatMap { color in
+  public static let discretion: [Self] = AnySingleColor.discretion.flatMap { color in
     [
       .init(UpQuark(color: color)), .init(DownQuark(color: color)), .init(CharmQuark(color: color)),
       .init(StrangeQuark(color: color)), .init(BottomQuark(color: color)),
