@@ -19,17 +19,17 @@ import Foundation
 
 @testable import RelativityKit
 
-/// ``Clock.TimeLapseListener`` which counts the amount of times it has been notified of ticks.
+/// ``TimeLapseListener`` which counts the amount of times it has been notified of ticks.
 ///
 /// - SeeAlso: ``count``
-final class CountingTimeLapseListener: TimeLapseListener {
+final class CountingTimeLapseListener: @unchecked Sendable, TimeLapseListener {
   /// Amount of times ticks have been notified to this ``CountingTimeLapseListener``.
   private(set) var count = 0
 
   func timeDidElapse(
+    on clock: Clock,
     from start: Duration,
     after previous: Duration?,
-    to current: Duration,
-    toward end: Duration
+    towards end: Duration
   ) async { count += 1 }
 }

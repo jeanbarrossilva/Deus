@@ -16,14 +16,12 @@
 // ===-------------------------------------------------------------------------------------------===
 
 /// An immutable array of fixed size.
-public class FixedArray<Element>: ExpressibleByArrayLiteral, Sequence {
+public final class FixedArray<Element>: ExpressibleByArrayLiteral, Sequence {
   /// Pointer to the first element allocated into the contiguous memory.
   private var pointer: UnsafeMutablePointer<Element>
 
   public let startIndex: Int
   public let endIndex: Int
-
-  deinit { pointer.deinitialize(count: count) }
 
   public required init(arrayLiteral elements: Element...) {
     pointer = .allocate(capacity: elements.count)
@@ -35,8 +33,12 @@ public class FixedArray<Element>: ExpressibleByArrayLiteral, Sequence {
     startIndex = elements.startIndex
     endIndex = elements.endIndex
   }
+
+  deinit { pointer.deinitialize(count: count) }
 }
 
 extension FixedArray: RandomAccessCollection {
   public subscript(position: Int) -> Element { pointer[position] }
 }
+
+extension FixedArray: @unchecked Sendable where Element: Sendable {}

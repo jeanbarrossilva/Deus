@@ -47,6 +47,7 @@ extension Pion where Self: ParticleLike { public var spin: Spin { .zero } }
 
 extension Pion where Self: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
-    lhs.charge == rhs.charge && lhs.color === rhs.color && lhs.quarks.elementsEqual(rhs.quarks)
+    lhs.charge == rhs.charge && lhs.color.is(type(of: rhs.color))
+      && lhs.quarks.elementsEqual(rhs.quarks)
   }
 }

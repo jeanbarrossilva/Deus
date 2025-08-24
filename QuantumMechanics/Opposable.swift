@@ -35,3 +35,5 @@ public struct Anti<Counterpart: Opposable> {
 extension Anti: Equatable where Counterpart: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool { lhs.counterpart == rhs.counterpart }
 }
+
+extension Anti: Sendable where Counterpart: Sendable {}

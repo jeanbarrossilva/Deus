@@ -19,7 +19,7 @@
 /// be, including both its matter and antimatter variants.
 ///
 /// - SeeAlso: ``discretion``
-public protocol Discrete: Opposable {
+public protocol Discrete: Opposable, Sendable {
   /// Type of the set which contains the discrete values.
   associatedtype Discretion: Collection<Self>
 
