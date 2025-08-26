@@ -127,17 +127,6 @@ actor ClockTests {
   }
 
   @Test
-  func currentTimePassedIntoTimeLapseListenerEqualsToElapsedOneOfClock() async throws {
-    for repetition in 1...2 {
-      let _ = await clock.addTimeLapseListener { clock, _, _, _ in
-        #expect(await clock.elapsedTime == .milliseconds(repetition))
-      }
-      await clock.advanceTime(by: .milliseconds(2), spacing: .linear)
-    }
-    await clock.reset()
-  }
-
-  @Test
   func endTimePassedIntoTimeLapseListenerIsEqualToThatToWhichTheTimeIsAdvancedToward() async throws
   {
     let _ = await clock.addTimeLapseListener { _, _, _, end in #expect(end == .milliseconds(2)) }
@@ -165,8 +154,8 @@ actor ClockTests {
   func advancesTimeLinearly() async throws {
     let listener = CountingTimeLapseListener()
     let _ = await Task { await clock.addTimeLapseListener(listener) }.value
-    let _ = await clock.addTimeLapseListener { _, _, current, _ in
-      #expect(current == .milliseconds(listener.count - 1))
+    let _ = await clock.addTimeLapseListener { clock, _, _, _ in
+      #expect(await clock.elapsedTime == .milliseconds(listener.count - 1))
     }
     await clock.advanceTime(by: .milliseconds(8), spacing: .linear)
     await clock.reset()
