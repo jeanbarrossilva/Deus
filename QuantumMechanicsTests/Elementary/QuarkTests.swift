@@ -21,7 +21,7 @@ import Testing
 @testable import QuantumMechanics
 
 struct UpQuarkTests {
-  @Test(arguments: AnySingleColor.discretion.map({ color in UpQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in UpQuark(colorLike: color) }))
   func baseMassIsTwoPointThreeMev(_ quark: UpQuark<AnySingleColor>) {
     #expect(
       quark.getMass(approximatedBy: .base)
@@ -29,12 +29,12 @@ struct UpQuarkTests {
     )
   }
 
-  @Test(arguments: AnySingleColor.discretion.map({ color in UpQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in UpQuark(colorLike: color) }))
   func symbolIsU(_ quark: UpQuark<AnySingleColor>) { #expect(quark.symbol == "u") }
 }
 
 struct DownQuarkTests {
-  @Test(arguments: AnySingleColor.discretion.map({ color in DownQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in DownQuark(colorLike: color) }))
   func baseMassIsFourPointEightMev(_ quark: DownQuark<AnySingleColor>) {
     #expect(
       quark.getMass(approximatedBy: .base)
@@ -42,12 +42,12 @@ struct DownQuarkTests {
     )
   }
 
-  @Test(arguments: AnySingleColor.discretion.map({ color in DownQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in DownQuark(colorLike: color) }))
   func symbolIsD(_ quark: DownQuark<AnySingleColor>) { #expect(quark.symbol == "d") }
 }
 
 struct StrangeQuarkTests {
-  @Test(arguments: AnySingleColor.discretion.map({ color in StrangeQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in StrangeQuark(colorLike: color) }))
   func baseMassIsNinetyFivePointZeroMev(_ quark: StrangeQuark<AnySingleColor>) {
     #expect(
       quark.getMass(approximatedBy: .base)
@@ -55,12 +55,12 @@ struct StrangeQuarkTests {
     )
   }
 
-  @Test(arguments: AnySingleColor.discretion.map({ color in StrangeQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in StrangeQuark(colorLike: color) }))
   func symbolIsS(_ quark: StrangeQuark<AnySingleColor>) { #expect(quark.symbol == "s") }
 }
 
 struct CharmQuarkTests {
-  @Test(arguments: AnySingleColor.discretion.map({ color in CharmQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in CharmQuark(colorLike: color) }))
   func baseMassIsOnePointTwoSevenFiveGev(_ quark: CharmQuark<AnySingleColor>) {
     #expect(
       quark.getMass(approximatedBy: .base)
@@ -68,12 +68,12 @@ struct CharmQuarkTests {
     )
   }
 
-  @Test(arguments: AnySingleColor.discretion.map({ color in CharmQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in CharmQuark(colorLike: color) }))
   func symbolIsC(_ quark: CharmQuark<AnySingleColor>) { #expect(quark.symbol == "c") }
 }
 
 struct BottomQuarkTests {
-  @Test(arguments: AnySingleColor.discretion.map({ color in BottomQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in BottomQuark(colorLike: color) }))
   func baseMassIsFourPointOneEightGev(_ quark: BottomQuark<AnySingleColor>) {
     #expect(
       quark.getMass(approximatedBy: .base)
@@ -81,12 +81,12 @@ struct BottomQuarkTests {
     )
   }
 
-  @Test(arguments: AnySingleColor.discretion.map({ color in BottomQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in BottomQuark(colorLike: color) }))
   func symbolIsB(_ quark: BottomQuark<AnySingleColor>) { #expect(quark.symbol == "b") }
 }
 
 struct TopQuarkTests {
-  @Test(arguments: AnySingleColor.discretion.map({ color in TopQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in TopQuark(colorLike: color) }))
   func baseMassIsOneHundredAndSeventyThreePointTwoOneGev(_ quark: TopQuark<AnySingleColor>) {
     #expect(
       quark.getMass(approximatedBy: .base)
@@ -94,6 +94,6 @@ struct TopQuarkTests {
     )
   }
 
-  @Test(arguments: AnySingleColor.discretion.map({ color in TopQuark(color: color) }))
+  @Test(arguments: AnySingleColor.discretion.map({ color in TopQuark(colorLike: color) }))
   func symbolIsT(_ quark: TopQuark<AnySingleColor>) { #expect(quark.symbol == "t") }
 }

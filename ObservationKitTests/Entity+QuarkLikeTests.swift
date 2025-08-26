@@ -42,6 +42,6 @@ struct EntityQuarkLikeTests {
     guard let singleMaterial = materials[materials.startIndex] as? SimpleMaterial else {
       fatalError("Single material of entity is not a simple one.")
     }
-    #expect(singleMaterial.color.tint == NSColor(quarkLike.color))
+    #expect(singleMaterial.color.tint == NSColor(quarkLike.colorLike))
   }
 }

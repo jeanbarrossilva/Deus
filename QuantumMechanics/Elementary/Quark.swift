@@ -24,13 +24,11 @@ let twoThirdsOfE = Measurement(value: 2 / 3, unit: UnitElectricCharge.elementary
 let negativeOneThirdOfE = Measurement(value: -1 / 3, unit: UnitElectricCharge.elementary)
 
 /// Base protocol to which ``Quark``s and antiquarks conform.
-public protocol QuarkLike: ColoredParticleLike where Color: SingleColorLike {}
+public protocol QuarkLike: ColoredParticleLike where ColorLike: SingleColorLike {}
 
 extension QuarkLike where Self: ParticleLike { public var spin: Spin { .half } }
 
-extension Anti: QuarkLike where Counterpart: Quark, Counterpart.Color: SingleColor {
-  public typealias Color = Anti<Counterpart.Color>
-}
+extension Anti: QuarkLike where Counterpart: Quark {}
 
 /// A quark (q) is an elementary fermion ``ColoredParticle`` which is confined, bound to at least
 /// another one by gluon ``Particle``s via strong force. It is the only ``Particle`` in the Standard
@@ -74,4 +72,4 @@ extension Anti: QuarkLike where Counterpart: Quark, Counterpart.Color: SingleCol
 ///
 /// - SeeAlso: ``ParticleLike/charge``
 /// - SeeAlso: ``Spin/half``
-public protocol Quark: QuarkLike, ColoredParticle where Color: SingleColor {}
+public protocol Quark: ColoredParticle, QuarkLike where ColorLike: SingleColor {}

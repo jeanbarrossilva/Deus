@@ -21,8 +21,8 @@ import Testing
 @testable import QuantumMechanics
 
 struct PositivePionTests {
-  private let upQuark = UpQuark(color: red)
-  private let downAntiquark = Anti(DownQuark(color: red))
+  private let upQuark = UpQuark(colorLike: red)
+  private let downAntiquark = Anti(DownQuark(colorLike: red))
   private lazy var positivePion = upQuark + downAntiquark
 
   @Test("u + d̄ → π⁺")

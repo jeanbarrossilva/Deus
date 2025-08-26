@@ -17,35 +17,28 @@
 
 import Foundation
 
-/// ``QuarkLike`` whose flavor information has been erased.
-public struct AnyQuarkLike: Discrete, QuarkLike {
-  /// ``Quark`` based on which this one was initialized.
-  let base: any QuarkLike & Sendable
-
-  public static let discretion = AnyQuark.discretion.flatMap { quark in
-    [Self.init(quark), .init(Anti(quark))]
-  }
-
+/// ``ParticleLike`` whose type information has been erased.
+public struct AnyParticleLike: ParticleLike {
   public let spin: Spin
   public let charge: Measurement<UnitElectricCharge>
   public let symbol: String
-  public let colorLike: AnySingleColorLike
 
-  public init(_ base: some QuarkLike) {
+  /// ``ParticleLike`` based on which this one was initialized.
+  let base: any ParticleLike
+
+  public init(_ base: some ParticleLike) {
     if let base = base as? Self {
       self = base
-    } else if let base = base as? AnyQuark {
+    } else if let base = base as? AnyParticle {
       self.base = base.base
       spin = base.spin
       charge = base.charge
       symbol = base.symbol
-      colorLike = .init(base.colorLike)
     } else {
       self.base = base
       spin = base.spin
       charge = base.charge
       symbol = base.symbol
-      colorLike = .init(base.colorLike)
     }
   }
 
@@ -54,45 +47,36 @@ public struct AnyQuarkLike: Discrete, QuarkLike {
   ) -> Measurement<UnitMass> { base.getMass(approximatedBy: approximator) }
 }
 
-extension AnyQuarkLike: Equatable {
+extension AnyParticleLike: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
-    lhs._coloredParticleLikeIsPartiallyEqual(to: rhs)
+    lhs._particleLikeIsPartiallyEqual(to: rhs)
   }
 }
 
-/// ``Quark`` whose flavor information has been erased.
-public struct AnyQuark: Discrete, Quark {
-  /// ``Quark`` based on which this one was initialized.
-  let base: any QuarkLike
-
-  public static let discretion = AnySingleColor.discretion.flatMap { color in
-    [
-      Self.init(UpQuark(colorLike: color)), .init(DownQuark(colorLike: color)),
-      .init(CharmQuark(colorLike: color)), .init(StrangeQuark(colorLike: color)),
-      .init(BottomQuark(colorLike: color)), .init(TopQuark(colorLike: color))
-    ]
-  }.sorted(by: <)
-
+/// ``Particle`` whose type information has been erased.
+public struct AnyParticle: ParticleLike {
   public let spin: Spin
   public let charge: Measurement<UnitElectricCharge>
   public let symbol: String
-  public let colorLike: AnySingleColor
 
-  public init(_ base: some Quark) {
+  /// ``Particle`` based on which this one was initialized.
+  let base: any Particle
+
+  public init(_ base: some Particle) {
     if let base = base as? Self {
       self = base
-    } else if let base = base as? AnyQuarkLike, let color = base.colorLike as? any SingleColor {
-      self.base = base.base
+    } else if let base = base as? AnyParticleLike,
+      let unerasedParticleLike = base.base as? any Particle
+    {
+      self.base = unerasedParticleLike
       spin = base.spin
       charge = base.charge
       symbol = base.symbol
-      colorLike = .init(color)
     } else {
       self.base = base
       spin = base.spin
       charge = base.charge
       symbol = base.symbol
-      colorLike = .init(base.colorLike)
     }
   }
 
@@ -101,8 +85,8 @@ public struct AnyQuark: Discrete, Quark {
   ) -> Measurement<UnitMass> { base.getMass(approximatedBy: approximator) }
 }
 
-extension AnyQuark: Equatable {
+extension AnyParticle: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
-    lhs._coloredParticleLikeIsPartiallyEqual(to: rhs)
+    lhs._particleLikeIsPartiallyEqual(to: rhs)
   }
 }

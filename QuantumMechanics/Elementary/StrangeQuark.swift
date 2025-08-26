@@ -24,12 +24,12 @@ private let baseMass = Measurement(value: 95, unit: UnitMass.megaelectronvolt)
 private let massStatisticalUncertainty = Measurement(value: 5, unit: UnitMass.gigaelectronvolt)
 
 /// Third lightest ``Quark``, with a Lagrangian mass of 95 ± 5 MeV/*c*². Decays to a ``DownQuark``.
-public struct StrangeQuark<Color: SingleColor>: Quark {
+public struct StrangeQuark<ColorLike: SingleColor>: Quark {
   public let symbol = "s"
   public let charge = negativeOneThirdOfE
-  public let color: Color
+  public let colorLike: ColorLike
 
-  public init(color: Color) { self.color = color }
+  public init(colorLike: ColorLike) { self.colorLike = colorLike }
 
   public func getMass(
     approximatedBy approximator: Approximator<Measurement<UnitMass>>

@@ -21,13 +21,15 @@ import Testing
 
 struct AnyQuarkTests {
   @Test(arguments: [
-    AnyQuark(UpQuark(color: red)), .init(UpQuark(color: green)), .init(UpQuark(color: blue)),
-    .init(DownQuark(color: red)), .init(DownQuark(color: green)), .init(DownQuark(color: blue)),
-    .init(StrangeQuark(color: red)), .init(StrangeQuark(color: green)),
-    .init(StrangeQuark(color: blue)), .init(CharmQuark(color: red)),
-    .init(CharmQuark(color: green)), .init(CharmQuark(color: blue)), .init(BottomQuark(color: red)),
-    .init(BottomQuark(color: green)), .init(BottomQuark(color: blue)), .init(TopQuark(color: red)),
-    .init(TopQuark(color: green)), .init(TopQuark(color: blue))
+    AnyQuark(UpQuark(colorLike: red)), .init(UpQuark(colorLike: green)),
+    .init(UpQuark(colorLike: blue)), .init(DownQuark(colorLike: red)),
+    .init(DownQuark(colorLike: green)), .init(DownQuark(colorLike: blue)),
+    .init(StrangeQuark(colorLike: red)), .init(StrangeQuark(colorLike: green)),
+    .init(StrangeQuark(colorLike: blue)), .init(CharmQuark(colorLike: red)),
+    .init(CharmQuark(colorLike: green)), .init(CharmQuark(colorLike: blue)),
+    .init(BottomQuark(colorLike: red)), .init(BottomQuark(colorLike: green)),
+    .init(BottomQuark(colorLike: blue)), .init(TopQuark(colorLike: red)),
+    .init(TopQuark(colorLike: green)), .init(TopQuark(colorLike: blue))
   ])
   func allKnownQuarksAreIncludedInDiscretion(_ quark: AnyQuark) {
     #expect(AnyQuark.discretion.contains(where: { discreteQuark in discreteQuark == quark }))

@@ -72,7 +72,7 @@ extension ParticleLike {
 
   /// The default implementation of ``isPartiallyEqual(to:)``.
   ///
-  /// This function is distinct from the internal one in that it allows for overriders which employ
+  /// This function is distinct from the public one in that it allows for overriders which employ
   /// type-specific checks to resort to the default check in case such type-specific checks return
   /// `false`.
   ///
@@ -96,6 +96,22 @@ extension ParticleLike where Self: Comparable {
   }
 }
 
+extension ParticleLike where Self: Equatable {
+  public static func == (lhs: Self, rhs: Self) -> Bool { lhs.isPartiallyEqual(to: rhs) }
+}
+
+extension Anti: Comparable, ParticleLike where Counterpart: Particle {
+  public var spin: Spin { counterpart.spin }
+  public var symbol: String { counterpart.symbol + "̅" }
+  public var charge: Measurement<UnitElectricCharge> {
+    Measurement(value: -counterpart.charge.value, unit: .elementary)
+  }
+
+  public func getMass(
+    approximatedBy approximator: Approximator<Measurement<UnitMass>>
+  ) -> Measurement<UnitMass> { counterpart.getMass(approximatedBy: approximator) }
+}
+
 /// Subatomic excitation of an underlying field, which exhibits discrete interactions with other
 /// fields. Differs from vacuum fluctuations or delocalized modes on such field in that it is
 /// localized: it has a wavepacket of location. Such localization is made possible by
@@ -113,15 +129,3 @@ extension ParticleLike where Self: Comparable {
 ///
 /// - SeeAlso: ``Spin``
 public protocol Particle: ParticleLike, Opposable {}
-
-extension Anti: Comparable, ParticleLike where Counterpart: Particle {
-  public var spin: Spin { counterpart.spin }
-  public var symbol: String { counterpart.symbol + "̅" }
-  public var charge: Measurement<UnitElectricCharge> {
-    Measurement(value: -counterpart.charge.value, unit: .elementary)
-  }
-
-  public func getMass(
-    approximatedBy approximator: Approximator<Measurement<UnitMass>>
-  ) -> Measurement<UnitMass> { counterpart.getMass(approximatedBy: approximator) }
-}

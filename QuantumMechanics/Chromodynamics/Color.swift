@@ -15,95 +15,21 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
-
-// MARK: - Colors
-
-/// Final state of confined ``ColoredParticle``s whose net ``Color`` charge is zero, making them
-/// effectively colorless. Results from the combination of ``Color``-anticolor pairs or of all
-/// ``SingleColor``s (``red`` + ``green`` + ``blue``).
-public let white = White()
-
-/// Red (r) direction in the ``Color`` field.
-public let red = Red()
-
-/// Green (g) direction in the ``Color`` field.
-public let green = Green()
-
-/// Blue (r) direction in the ``Color`` field.
-public let blue = Blue()
-
-/// Final state of confined ``ColoredParticleLike``s whose net ``Color`` charge is zero, making them
-/// effectively colorless. Results from the combination of ``Color``-anticolor pairs or of all
-/// ``SingleColor``s (``red`` + ``green`` + ``blue``).
-public struct White: Color, SpecificColor { fileprivate init() {} }
-
-/// Red (r) direction in the ``Color`` field.
-public struct Red: SingleColor, SpecificColor { fileprivate init() {} }
-
-/// Green (g) direction in the ``Color`` field.
-public struct Green: SingleColor, SpecificColor { fileprivate init() {} }
-
-/// Blue (b) direction in the ``Color`` field.
-public struct Blue: SingleColor, SpecificColor { fileprivate init() {} }
-
-/// Antired (r̄) direction in the ``Color`` field.
-private struct Antired: SingleColor, SpecificColor { fileprivate init() {} }
-
-/// Antigreen (ḡ) direction in the ``Color`` field.
-private struct Antigreen: SingleColor, SpecificColor { fileprivate init() {} }
-
-/// Antiblue (b̄) direction in the ``Color`` field.
-private struct Antiblue: SingleColor, SpecificColor { fileprivate init() {} }
-
-// MARK: Color and single-color-like declarations
-
-/// One direction in the ``Color`` field.
-public protocol SingleColor: SingleColorLike, Opposable {}
-
-/// Type-erased ``SingleColor``. Might be ``red``, ``green`` or ``blue``.
-public struct AnySingleColor: Discrete, SingleColor {
-  /// ``SingleColor`` whose type has been erased. Casting it to the original type is a safe
-  /// operation.
-  let base: any SingleColor
-
-  public static let discretion: [Self] = [.init(red), .init(green), .init(blue)]
-
-  public init(_ base: some SingleColor) {
-    if let base = base as? Self { self = base } else { self.base = base }
-  }
-
-  public func `is`(_ other: (some Color).Type) -> Bool { type(of: base) == other }
+/// Base protocol to which ``Color``s and anticolors conform.
+public protocol ColorLike: Equatable, Sendable {
+  /// Returns whether the type of this ``ColorLike`` and the given one match.
+  ///
+  /// Erasure is disregarded: by calling this function on or passing in an any-``ColorLike``, such
+  /// check is performed against the original, unerased type of such erased ``ColorLike`` instead of
+  /// that of its wrapper.
+  ///
+  /// - Parameter other: Type of ``ColorLike`` to compare that of this one with.
+  func `is`(_ other: (some SpecificColorLike).Type) -> Bool
 }
 
-/// Base protocol to which single ``Color``s and anticolors conform.
-public protocol SingleColorLike: Color {}
-
-extension Anti: Color, SingleColorLike where Counterpart: SingleColor {}
-
-extension Anti: SpecificColor where Counterpart: SingleColor & SpecificColor {}
-
-/// Type-erased ``SingleColorLike``. Might be ``red``, antired, ``green``, antigreen, ``blue`` or
-/// antiblue.
-public struct AnySingleColorLike: Discrete, SingleColor {
-  /// ``SingleColorLike`` whose type has been erased. Casting it to the original type is a safe
-  /// operation.
-  let base: any SingleColorLike
-
-  public static let discretion: [Self] = [
-    .init(red), .init(Anti(red)), .init(green), .init(Anti(green)), .init(blue), .init(Anti(blue))
-  ]
-
-  public init(_ base: any SingleColorLike) {
-    if let base = base as? Self { self = base } else { self.base = base }
-  }
-
-  public func `is`(_ other: (some Color).Type) -> Bool { type(of: base) == other }
+extension Anti: ColorLike where Counterpart: Color {
+  public func `is`(_ other: (some SpecificColorLike).Type) -> Bool { Self.self == other }
 }
-
-/// ``Color`` whose type has not been erased (i.e., non-``AnySingleColor`` or
-/// -``AnySingleColorLike``).
-public protocol SpecificColor: Color {}
 
 /// Color charge is a fundamental, confined (unobservable while free) property which determines its
 /// transformation under the SU(3) gauge symmetry whose field, SU(3)₍color₎ or gluon field, is
@@ -128,15 +54,4 @@ public protocol SpecificColor: Color {}
 /// description (respectively, a visual perception of the electromagnetic spectrum and a projection
 /// of physical movement from one point toward another). These are uniquely-quantum properties of a
 /// ``ColoredParticle``.
-public protocol Color: Equatable, Sendable {
-  /// Returns whether the type of this ``Color`` and the given one match.
-  ///
-  /// - Parameter other: Type of ``Color`` to compare that of this one with.
-  func `is`(_ other: (some Color).Type) -> Bool
-}
-
-extension Color { public func `is`(_ other: (some Color).Type) -> Bool { Self.self == other } }
-
-extension Color where Self: Equatable {
-  public static func == (lhs: Self, rhs: Self) -> Bool { true }
-}
+public protocol Color: ColorLike, Opposable {}

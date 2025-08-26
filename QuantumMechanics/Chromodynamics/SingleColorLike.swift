@@ -15,26 +15,20 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Foundation
+/// Base protocol to which single ``Color``s and anticolors conform.
+public protocol SingleColorLike: ColorLike {}
 
-/// Base value for calculating an approximation of the mass of a ``BottomQuark``.
-private let baseMass = Measurement(value: 4.18, unit: UnitMass.gigaelectronvolt)
-
-/// Statistical uncertainty for calculating an approximation of the mass of a ``BottomQuark``.
-private let massStatisticalUncertainty = Measurement(value: 0.03, unit: UnitMass.gigaelectronvolt)
-
-/// Second heaviest ``Quark``, with a Lagrangian mass of 4.18 ± 0.03 GeV/*c*². Decays to a
-/// ``CharmQuark``.
-public struct BottomQuark<ColorLike: SingleColor>: Quark {
-  public let symbol = "b"
-  public let charge = negativeOneThirdOfE
-  public let colorLike: ColorLike
-
-  public init(colorLike: ColorLike) { self.colorLike = colorLike }
-
-  public func getMass(
-    approximatedBy approximator: Approximator<Measurement<UnitMass>>
-  ) -> Measurement<UnitMass> {
-    approximator.approximate(baseMass, massStatisticalUncertainty, .zero)
+extension Anti: SingleColorLike where Counterpart: SingleColor {
+  public func `is`(_ other: (some SpecificColorLike).Type) -> Bool {
+    let unerasedCounterpartType =
+      if let counterpart = counterpart as? AnySingleColor { type(of: counterpart.base) } else {
+        Counterpart.self
+      }
+    return other == Anti<Red>.self && unerasedCounterpartType == Red.self
+      || other == Anti<Green>.self && unerasedCounterpartType == Green.self
+      || other == Anti<Blue>.self && unerasedCounterpartType == Blue.self
   }
 }
+
+/// One direction in the ``Color`` field.
+public protocol SingleColor: Color, Opposable, SingleColorLike {}

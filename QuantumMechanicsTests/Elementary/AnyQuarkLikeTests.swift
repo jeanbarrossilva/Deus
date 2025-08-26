@@ -21,24 +21,24 @@ import Testing
 
 struct AnyQuarkLikeTests {
   @Test(arguments: [
-    AnyQuarkLike(UpQuark(color: red)), .init(Anti(UpQuark(color: red))),
-    .init(UpQuark(color: green)), .init(Anti(UpQuark(color: green))), .init(UpQuark(color: blue)),
-    .init(Anti(UpQuark(color: blue))), .init(DownQuark(color: red)),
-    .init(Anti(DownQuark(color: red))), .init(DownQuark(color: green)),
-    .init(Anti(DownQuark(color: green))), .init(DownQuark(color: blue)),
-    .init(Anti(DownQuark(color: blue))), .init(StrangeQuark(color: red)),
-    .init(Anti(StrangeQuark(color: red))), .init(StrangeQuark(color: green)),
-    .init(Anti(StrangeQuark(color: green))), .init(StrangeQuark(color: blue)),
-    .init(Anti(StrangeQuark(color: blue))), .init(CharmQuark(color: red)),
-    .init(Anti(CharmQuark(color: red))), .init(CharmQuark(color: green)),
-    .init(Anti(CharmQuark(color: green))), .init(CharmQuark(color: blue)),
-    .init(Anti(CharmQuark(color: blue))), .init(BottomQuark(color: red)),
-    .init(Anti(BottomQuark(color: red))), .init(BottomQuark(color: green)),
-    .init(Anti(BottomQuark(color: green))), .init(BottomQuark(color: blue)),
-    .init(Anti(BottomQuark(color: blue))), .init(TopQuark(color: red)),
-    .init(Anti(TopQuark(color: red))), .init(TopQuark(color: green)),
-    .init(Anti(TopQuark(color: green))), .init(TopQuark(color: blue)),
-    .init(Anti(TopQuark(color: blue)))
+    AnyQuarkLike(UpQuark(colorLike: red)), .init(Anti(UpQuark(colorLike: red))),
+    .init(UpQuark(colorLike: green)), .init(Anti(UpQuark(colorLike: green))),
+    .init(UpQuark(colorLike: blue)), .init(Anti(UpQuark(colorLike: blue))),
+    .init(DownQuark(colorLike: red)), .init(Anti(DownQuark(colorLike: red))),
+    .init(DownQuark(colorLike: green)), .init(Anti(DownQuark(colorLike: green))),
+    .init(DownQuark(colorLike: blue)), .init(Anti(DownQuark(colorLike: blue))),
+    .init(StrangeQuark(colorLike: red)), .init(Anti(StrangeQuark(colorLike: red))),
+    .init(StrangeQuark(colorLike: green)), .init(Anti(StrangeQuark(colorLike: green))),
+    .init(StrangeQuark(colorLike: blue)), .init(Anti(StrangeQuark(colorLike: blue))),
+    .init(CharmQuark(colorLike: red)), .init(Anti(CharmQuark(colorLike: red))),
+    .init(CharmQuark(colorLike: green)), .init(Anti(CharmQuark(colorLike: green))),
+    .init(CharmQuark(colorLike: blue)), .init(Anti(CharmQuark(colorLike: blue))),
+    .init(BottomQuark(colorLike: red)), .init(Anti(BottomQuark(colorLike: red))),
+    .init(BottomQuark(colorLike: green)), .init(Anti(BottomQuark(colorLike: green))),
+    .init(BottomQuark(colorLike: blue)), .init(Anti(BottomQuark(colorLike: blue))),
+    .init(TopQuark(colorLike: red)), .init(Anti(TopQuark(colorLike: red))),
+    .init(TopQuark(colorLike: green)), .init(Anti(TopQuark(colorLike: green))),
+    .init(TopQuark(colorLike: blue)), .init(Anti(TopQuark(colorLike: blue)))
   ])
   func allKnownQuarksAndAntiquarksAreIncludedInDiscretion(_ quarkLike: AnyQuarkLike) {
     #expect(

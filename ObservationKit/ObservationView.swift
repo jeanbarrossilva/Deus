@@ -40,7 +40,7 @@ private struct ObservationARView: NSViewRepresentable {
     let nsView = ARView(frame: geometry.frame(in: .local))
     nsView.environment.background = .color(.windowBackgroundColor)
     let anchor = AnchorEntity()
-    let entity = Entity(Anti(UpQuark(color: red)))
+    let entity = Entity(Anti(UpQuark(colorLike: red)))
     precondition(
       entity != nil,
       "Conversion of an antired up antiquark into an entity should never fail."
