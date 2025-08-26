@@ -44,9 +44,3 @@ let chargedPionMassStatisticalUncertainty = Measurement(value: 180, unit: UnitMa
 public protocol Pion: Meson {}
 
 extension Pion where Self: ParticleLike { public var spin: Spin { .zero } }
-
-extension Pion where Self: Equatable {
-  public static func == (lhs: Self, rhs: Self) -> Bool {
-    lhs.charge == rhs.charge && lhs.color === rhs.color && lhs.quarks.elementsEqual(rhs.quarks)
-  }
-}

@@ -22,19 +22,7 @@ import Testing
 struct TwoDTests {
   @Test
   func returnsZero2DAbstractionWhenRequestingOneAtZeroZero() throws {
-    #expect(Vector.at(x: 0, y: 0) === Vector.zero)
-  }
-
-  @Test
-  func returnsRhsWhenSummingZero2DAbstractionToIt() throws {
-    let rhs = Vector.at(x: 3, y: 4)
-    #expect(rhs + Vector.at(x: 0, y: 0) === rhs)
-  }
-
-  @Test
-  func returnsLhsWhenSummingItToZero2DAbstraction() throws {
-    let lhs = Vector.at(x: 3, y: 4)
-    #expect(Vector.at(x: 0, y: 0) + lhs === lhs)
+    #expect(Point.at(x: 0, y: 0) == Point.zero)
   }
 
   @Test
@@ -43,14 +31,8 @@ struct TwoDTests {
   }
 
   @Test
-  func returnsLhsWhenSubtractingTheZeroVectorFromIt() throws {
-    let lhs = Vector.at(x: 3, y: 4)
-    #expect(lhs - .at(x: 0, y: 0) === lhs)
-  }
-
-  @Test
-  func returnsZeroVectorWhenSubtractingTwoEqualVectors() throws {
-    #expect(Vector.at(x: 3, y: 4) - .at(x: 3, y: 4) === Vector.at(x: 0, y: 0))
+  func returnsZeroPointWhenSubtractingTwoEqualPoints() throws {
+    #expect(Point.at(x: 3, y: 4) - .at(x: 3, y: 4) == Point.at(x: 0, y: 0))
   }
 
   @Test

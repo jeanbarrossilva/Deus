@@ -39,15 +39,40 @@ import Foundation
 ///             • **q̄**: antiquark, the antiparticle of a ``Quark``.\
 ///             • **⊗**: tensor product of two vector spaces *V* and *W*: an *m* × *n* matrix, where
 ///               *m* is the number of components of *V* and *n* is that of *W*.
-public protocol Hadron: ColoredParticle<White> {
+public protocol Hadron: ColoredParticle {
+  associatedtype ColorLike = White
+
   /// ``Quark``s by which this ``Hadron`` is composed, bound by strong force via the gluon
   /// ``Particle``s.
   var quarks: FixedArray<AnyQuarkLike> { get }
 }
 
 extension Hadron {
+  /// The default implementation of ``isPartiallyEqual(to:)``.
+  ///
+  /// - Parameter other: ``Hadron`` to which this one will be compared.
+  /// - Returns: `true` if the properties shared by these ``Hadron`` values are equal; otherwise,
+  ///   `false`.
+  func _hadronIsPartiallyEqual(to other: some Hadron) -> Bool {
+    _coloredParticleLikeIsPartiallyEqual(to: other) && quarks.elementsEqual(other.quarks)
+  }
+}
+
+extension Hadron where Self: ParticleLike {
+  public func isPartiallyEqual(to other: some ParticleLike) -> Bool {
+    if let other = other as? any Hadron {
+      _hadronIsPartiallyEqual(to: other)
+    } else if let other = other as? any ColoredParticleLike {
+      _coloredParticleLikeIsPartiallyEqual(to: other)
+    } else {
+      _particleLikeIsPartiallyEqual(to: other)
+    }
+  }
+}
+
+extension Hadron where Self: ColoredParticleLike {
   public var charge: Measurement<UnitElectricCharge> {
     quarks.reduce(.zero) { charge, quark in quark.charge + charge }
   }
-  public var color: White { white }
+  public var colorLike: ColorLike { white as! ColorLike }
 }

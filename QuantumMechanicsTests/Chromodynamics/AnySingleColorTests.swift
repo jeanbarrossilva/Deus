@@ -29,14 +29,69 @@ struct AnySingleColorTests {
     )
   }
 
-  @Test(arguments: AnySingleColor.discretion)
-  func isBaseColor(_ color: AnySingleColor) {
-    if color.base is Red {
-      #expect(color.is(Red.self))
-    } else if color.base is Green {
-      #expect(color.is(Green.self))
-    } else if color.base is Blue {
-      #expect(color.is(Blue.self))
+  @Suite("Equality")
+  struct EqualityTests {
+    @Suite("Red")
+    struct RedTests {
+      @Test
+      func isRed() { #expect(AnySingleColor(red).is(Red.self)) }
+
+      @Test
+      func isNotAntired() { #expect(!AnySingleColor(red).is(Anti<Red>.self)) }
+
+      @Test
+      func isNotGreen() { #expect(!AnySingleColor(red).is(Green.self)) }
+
+      @Test
+      func isNotAntigreen() { #expect(!AnySingleColor(red).is(Anti<Green>.self)) }
+
+      @Test
+      func isNotBlue() { #expect(!AnySingleColor(red).is(Blue.self)) }
+
+      @Test
+      func isNotAntiblue() { #expect(!AnySingleColor(red).is(Anti<Blue>.self)) }
+    }
+
+    @Suite("Green")
+    struct GreenTests {
+      @Test
+      func isGreen() { #expect(AnySingleColor(green).is(Green.self)) }
+
+      @Test
+      func isNotAntigreen() { #expect(!AnySingleColor(green).is(Anti<Green>.self)) }
+
+      @Test
+      func isNotAntired() { #expect(!AnySingleColor(green).is(Anti<Red>.self)) }
+
+      @Test
+      func isNotRed() { #expect(!AnySingleColor(green).is(Red.self)) }
+
+      @Test
+      func isNotBlue() { #expect(!AnySingleColor(green).is(Blue.self)) }
+
+      @Test
+      func isNotAntiblue() { #expect(!AnySingleColor(green).is(Anti<Blue>.self)) }
+    }
+
+    @Suite("Blue")
+    struct BlueTests {
+      @Test
+      func blueIsBlue() { #expect(AnySingleColor(blue).is(Blue.self)) }
+
+      @Test
+      func isNotAntiblue() { #expect(!AnySingleColor(blue).is(Anti<Blue>.self)) }
+
+      @Test
+      func isNotAntired() { #expect(!AnySingleColor(blue).is(Anti<Red>.self)) }
+
+      @Test
+      func isNotRed() { #expect(!AnySingleColor(blue).is(Red.self)) }
+
+      @Test
+      func isNotGreen() { #expect(!AnySingleColor(blue).is(Green.self)) }
+
+      @Test
+      func isNotAntigreen() { #expect(!AnySingleColor(blue).is(Anti<Green>.self)) }
     }
   }
 }

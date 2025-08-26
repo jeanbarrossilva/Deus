@@ -16,12 +16,12 @@
 // ===-------------------------------------------------------------------------------------------===
 
 /// Base protocol to which ``ColoredParticle``s and colored antiparticles conform.
-public protocol ColoredParticleLike<Color>: ParticleLike {
-  /// The specific type of ``Color``.
-  associatedtype Color: QuantumMechanics.Color
+public protocol ColoredParticleLike: ParticleLike {
+  /// The specific type of ``ColorLike``.
+  associatedtype ColorLike: QuantumMechanics.ColorLike
 
   /// Measured transformation under the SU(3) symmetry.
-  var color: Color { get }
+  var colorLike: ColorLike { get }
 }
 
 extension ColoredParticleLike {
@@ -30,28 +30,33 @@ extension ColoredParticleLike {
   /// - Parameter other: ``ColoredParticleLike`` to which this one will be compared.
   /// - Returns: `true` if the properties shared by these ``ColoredParticleLike`` values are equal;
   ///   otherwise, `false`.
-  func _coloredParticleLikeIsPartiallyEqual(to other: some ParticleLike) -> Bool {
-    guard let color = color as? AnyClass,
-      let otherColor = (other as? any ColoredParticleLike)?.color as? AnyClass
-    else { return _particleLikeIsPartiallyEqual(to: other) }
-    return color === otherColor && _particleLikeIsPartiallyEqual(to: other)
+  func _coloredParticleLikeIsPartiallyEqual(to other: some ColoredParticleLike) -> Bool {
+    return _particleLikeIsPartiallyEqual(to: other)
+      && (colorLike.is(Red.self) && other.colorLike.is(Red.self)
+        || colorLike.is(Anti<Red>.self) && other.colorLike.is(Anti<Red>.self)
+        || colorLike.is(Green.self) && other.colorLike.is(Green.self)
+        || colorLike.is(Anti<Green>.self) && other.colorLike.is(Anti<Green>.self)
+        || colorLike.is(Blue.self) && other.colorLike.is(Blue.self)
+        || colorLike.is(Anti<Blue>.self) && other.colorLike.is(Anti<Blue>.self))
   }
 }
 
-extension Anti: ColoredParticleLike
-where Counterpart: ColoredParticle, Counterpart.Color: SingleColor {
-  public var color: Anti<Counterpart.Color> { Anti<Counterpart.Color>(counterpart.color) }
+extension Anti: ColoredParticleLike where Counterpart: ColoredParticle {
+  public var colorLike: Anti<Counterpart.ColorLike> {
+    Anti<Counterpart.ColorLike>(counterpart.colorLike)
+  }
 }
 
 /// Direct (in the case of a gluon ``Particle``) or indirect result of a localized excitation of the
 /// ``Color`` field.
-public protocol ColoredParticle<Color>: ColoredParticleLike, Particle {}
+public protocol ColoredParticle: ColoredParticleLike, Particle where ColorLike: Color {}
 
 extension ColoredParticle where Self: ParticleLike {
   public func isPartiallyEqual(to other: some ParticleLike) -> Bool {
-    guard let other = other as? any ColoredParticle else {
-      return _particleLikeIsPartiallyEqual(to: other)
+    if let other = other as? any ColoredParticle {
+      _coloredParticleLikeIsPartiallyEqual(to: other)
+    } else {
+      _particleLikeIsPartiallyEqual(to: other)
     }
-    return _coloredParticleLikeIsPartiallyEqual(to: other)
   }
 }

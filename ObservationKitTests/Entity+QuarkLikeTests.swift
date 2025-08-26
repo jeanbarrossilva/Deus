@@ -16,7 +16,7 @@
 // ===-------------------------------------------------------------------------------------------===
 
 import AppKit
-import RealityKit
+@preconcurrency import RealityKit
 import QuantumMechanics
 import Testing
 
@@ -28,11 +28,13 @@ struct EntityQuarkLikeTests {
     .disabled("Entity initializer fails only when testing."),
     arguments: AnyQuarkLike.discretion
   )
-  func entityIsColored(withColorOf quarkLike: AnyQuarkLike) {
-    guard let entity = Entity(quarkLike) else { fatalError("Entity initialization has failed.") }
-    let components = entity.components
-    #expect(components.count == 1)
-    guard let singleComponent = components[components.startIndex] as? ModelComponent else {
+  func entityIsColored(withColorOf quarkLike: AnyQuarkLike) async {
+    guard let entity = await Entity(quarkLike) else {
+      fatalError("Entity initialization has failed.")
+    }
+    async let components = entity.components
+    #expect(await components.count == 1)
+    guard let singleComponent = await components[components.startIndex] as? ModelComponent else {
       fatalError("Single component of entity is not a ModelComponent.")
     }
     let materials = singleComponent.materials
@@ -40,6 +42,6 @@ struct EntityQuarkLikeTests {
     guard let singleMaterial = materials[materials.startIndex] as? SimpleMaterial else {
       fatalError("Single material of entity is not a simple one.")
     }
-    #expect(singleMaterial.color.tint == NSColor(quarkLike.color))
+    #expect(singleMaterial.color.tint == NSColor(quarkLike.colorLike))
   }
 }

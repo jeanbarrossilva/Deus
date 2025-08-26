@@ -15,28 +15,20 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-import Testing
+/// Base protocol to which single ``Color``s and anticolors conform.
+public protocol SingleColorLike: ColorLike {}
 
-@testable import Geometry
-
-struct VectorTests {
-  @Test
-  func moduleOfZeroVectorIsZero() throws { #expect(Vector.at(x: 0, y: 0).module == 0) }
-
-  @Test
-  func calculatesModuleOfNonZeroVector() throws { #expect(Vector.at(x: 3, y: 4).module == 5) }
-
-  @Test
-  func zeroVectorHasNoUnitaryVector() throws { #expect(Vector.at(x: 0, y: 0).unitary == nil) }
-
-  @Test
-  func unitaryVectorOfUnitaryVectorIsItself() throws {
-    let unitaryVector = Vector.at(x: 1, y: 0)
-    #expect(unitaryVector.unitary === unitaryVector)
-  }
-
-  @Test
-  func calculatesUnitaryVectorOfNonZeroVector() throws {
-    #expect(Vector.at(x: 3, y: 4).unitary == Vector.at(x: 0.6, y: 0.8))
+extension Anti: SingleColorLike where Counterpart: SingleColor {
+  public func `is`(_ other: (some SpecificColorLike).Type) -> Bool {
+    let unerasedCounterpartType =
+      if let counterpart = counterpart as? AnySingleColor { type(of: counterpart.base) } else {
+        Counterpart.self
+      }
+    return other == Anti<Red>.self && unerasedCounterpartType == Red.self
+      || other == Anti<Green>.self && unerasedCounterpartType == Green.self
+      || other == Anti<Blue>.self && unerasedCounterpartType == Blue.self
   }
 }
+
+/// One direction in the ``Color`` field.
+public protocol SingleColor: Color, Opposable, SingleColorLike {}

@@ -23,17 +23,17 @@ import Testing
 struct AntiparticleTests {
   @Test
   func chargeIsOpposite() {
-    #expect(Anti(UpQuark(color: red)).charge == Measurement(value: -2 / 3, unit: .elementary))
+    #expect(Anti(UpQuark(colorLike: red)).charge == Measurement(value: -2 / 3, unit: .elementary))
   }
 
   @Test
   func massIsSameAsOfCounterpart() {
-    let particle = UpQuark(color: red)
+    let particle = UpQuark(colorLike: red)
     #expect(
       Anti(particle).getMass(approximatedBy: .base) == particle.getMass(approximatedBy: .base)
     )
   }
 
   @Test
-  func symbolHasOverbar() { #expect(Anti(UpQuark(color: red)).symbol == "u̅") }
+  func symbolHasOverbar() { #expect(Anti(UpQuark(colorLike: red)).symbol == "u̅") }
 }

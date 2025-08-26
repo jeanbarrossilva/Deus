@@ -20,7 +20,7 @@ import Testing
 
 % for index, (flavor, mass) in enumerate(quarks.items()):
   % implementation = flavor.capitalize() + "Quark"
-  % caseAttribute = '@Test(arguments: AnySingleColor.discretion.map({ color in ' + implementation + '(color: color) }))'
+  % caseAttribute = '@Test(arguments: AnySingleColor.discretion.map({ color in ' + implementation + '(colorLike: color) }))'
   % caseParameter = '_ quark: ' + implementation + '<AnySingleColor>'
   % mass = mass.split(' ')
   % massValue = float(mass[0])

@@ -15,17 +15,12 @@
 // not, see https://www.gnu.org/licenses.
 // ===-------------------------------------------------------------------------------------------===
 
-extension Duration: @retroactive Strideable {
-  /// Calculates the distance between this distance and another one.
-  ///
-  /// - Parameter other: `Duration` whose distance in relation to this one will be calculated.
-  public func distance(to other: Duration) -> Int128 { other.attoseconds - attoseconds }
+import Testing
 
-  /// Advances this `Duration` by the given amount of attoseconds.
-  ///
-  /// - Parameter n: Attoseconds towards which this `Duration` is to be advanced.
-  public func advanced(by n: Int128) -> Duration {
-    guard n != 0 else { return self }
-    return .init(attoseconds: attoseconds + n)
-  }
+@testable import RelativityKit
+
+@Suite("Duration+Attosecond tests")
+struct DurationAttosecondTests {
+  @Test
+  func secondScaleIs1e18() { #expect(Duration.secondScaleAsInt128 == .init(1e18)) }
 }

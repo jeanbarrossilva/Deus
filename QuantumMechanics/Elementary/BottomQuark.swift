@@ -25,12 +25,12 @@ private let massStatisticalUncertainty = Measurement(value: 0.03, unit: UnitMass
 
 /// Second heaviest ``Quark``, with a Lagrangian mass of 4.18 ± 0.03 GeV/*c*². Decays to a
 /// ``CharmQuark``.
-public struct BottomQuark<Color: SingleColor>: Quark {
+public struct BottomQuark<ColorLike: SingleColor>: Quark {
   public let symbol = "b"
   public let charge = negativeOneThirdOfE
-  public let color: Color
+  public let colorLike: ColorLike
 
-  public init(color: Color) { self.color = color }
+  public init(colorLike: ColorLike) { self.colorLike = colorLike }
 
   public func getMass(
     approximatedBy approximator: Approximator<Measurement<UnitMass>>

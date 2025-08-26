@@ -18,8 +18,36 @@
 import Foundation
 import Geometry
 
-/// Closure which is executed whenever a ``Clock`` is started.
-typealias ClockDidStart = () -> Void
+/// Listener of lapses of time of a ``Clock``.
+public protocol TimeLapseListener: AnyObject {
+  /// Callback called after a lapse of time of the `clock`.
+  ///
+  /// - Parameters:
+  ///   - clock: ``Clock`` whose time has elapsed.
+  ///   - start: Time from which the `clock` is being advanced.
+  ///   - previous: Time prior to the current one.
+  ///
+  ///     The time of a ``Clock`` elapses 1 ms per tick. However, the lapse may also have been the
+  ///     result of an advancement; in such a scenario, it could have been advanced immediately
+  ///     instead of linearly, and, therefore, the difference between both times might not be of
+  ///     only 1 ms.
+  ///
+  ///     It will be `nil` if this is the first lapse of time of the `clock` and, in this case,
+  ///     the current time *may* be zero depending on whether the `clock` has been restarted. If the
+  ///     `clock` is resuming, it will be the amount of time elapsed at the moment it was paused.
+  ///   - end: Target, final time towards which the time of the ``Clock`` is elapsing.
+  func timeDidElapse(
+    on clock: Clock,
+    from start: Duration,
+    after previous: Duration?,
+    towards end: Duration
+  ) async
+}
+
+/// Closure whose signature matches that of the
+/// ``TimeLapseListener/timeDidElapse(on:from:after:towards:)`` callback.
+public typealias TimeDidElapse = (Clock, _ start: Duration, _ previous: Duration?, _ end: Duration)
+  async -> Void
 
 /// Coordinates the passage of time in a simulated universe, allowing for the movement of bodies and
 /// other time-based changes to their properties (such as temperature, size, direction, velocity,
@@ -207,8 +235,8 @@ public actor Clock {
   /// - Parameter listener: ``TimeLapseListener`` to be added.
   /// - Returns: ID of the `listener` with which it can be later removed.
   /// - SeeAlso: ``removeTimeLapseListener(identifiedAs:)``
-  public func addTimeLapseListener(_ listener: any AnyObject & TimeLapseListener) -> UUID {
-    addAnyTimeLapseListener(AnyTimeLapseListener(listener))
+  public func addTimeLapseListener(_ listener: any AnyObject & TimeLapseListener) async -> UUID {
+    await Task { addAnyTimeLapseListener(.init(listener)) }.value
   }
 
   /// Listens to lapses of time of this ``Clock``.
@@ -216,9 +244,8 @@ public actor Clock {
   /// - Parameter timeDidElapse: Callback called whenever the time of this ``Clock`` is elapsed.
   /// - Returns: ID of the ``TimeLapseListener`` with which it can be later removed.
   /// - SeeAlso: ``removeTimeLapseListener(identifiedAs:)``
-  public func addTimeLapseListener(_ timeDidElapse: @escaping TimeDidElapse) -> UUID {
-    addAnyTimeLapseListener(AnyTimeLapseListener(timeDidElapse: timeDidElapse))
-  }
+  public func addTimeLapseListener(_ timeDidElapse: @escaping @Sendable TimeDidElapse) async -> UUID
+  { await Task { addAnyTimeLapseListener(.init(timeDidElapse: timeDidElapse)) }.value }
 
   /// Removes a listener of lapses of time of this ``Clock``.
   ///
@@ -288,10 +315,10 @@ public actor Clock {
       else { continue }
       for listener in timeLapseListeners {
         await listener.timeDidElapse(
+          on: self,
           from: start,
           after: meantime == start ? nil : max(.zero, meantime - .tick),
-          to: meantime,
-          toward: end
+          towards: end
         )
       }
     }
@@ -328,32 +355,6 @@ public actor Clock {
   }
 }
 
-/// Listener of lapses of time of a ``Clock``.
-public protocol TimeLapseListener: AnyObject {
-  /// Callback called after a lapse of time of the ``Clock``.
-  ///
-  /// - Parameters:
-  ///   - start: Time from which the ``Clock`` is being advanced.
-  ///   - previous: Time prior to the `current` one.
-  ///
-  ///     The time of a ``Clock`` elapses 1 ms per tick. However, the lapse may also have been the
-  ///     result of an advancement; in such a scenario, it could have been advanced immediately
-  ///     instead of linearly, and, therefore, the difference between both times might not be of
-  ///     only 1 ms.
-  ///
-  ///     It will be `nil` if this is the first lapse of time of the ``Clock`` and, in this case,
-  ///     `current` *may* be zero depending on whether the ``Clock`` has been restarted. If the
-  ///     ``Clock`` is resuming, it will be the amount of time elapsed at the moment it was paused.
-  ///   - current: Current time of the ``Clock``.
-  ///   - end: Target, final time toward which the time of the ``Clock`` is elapsing.
-  func timeDidElapse(
-    from start: Duration,
-    after previous: Duration?,
-    to current: Duration,
-    toward end: Duration
-  ) async
-}
-
 /// ``TimeLapseListener`` by which an instance of a conforming class can be wrapped in order to be
 /// added and listen to the lapses of time of a ``Clock``. A randomly generated ID is assigned to it
 /// upo instantiation, which allows for both ensuring that it is added to a ``Clock`` only once and
@@ -361,7 +362,7 @@ public protocol TimeLapseListener: AnyObject {
 ///
 /// - SeeAlso: ``Clock/addTimeLapseListener(_:)-2lfn4``
 /// - SeeAlso: ``Clock/removeTimeLapseListener(identifiedAs:)``
-private final class AnyTimeLapseListener: TimeLapseListener, Identifiable, Hashable {
+private actor AnyTimeLapseListener: TimeLapseListener, Identifiable {
   let id: UUID
 
   /// Callback to which calls to ``timeDidElapse(from:after:to:toward)`` delegate.
@@ -380,20 +381,15 @@ private final class AnyTimeLapseListener: TimeLapseListener, Identifiable, Hasha
   static func == (lhs: AnyTimeLapseListener, rhs: AnyTimeLapseListener) -> Bool { lhs.id == rhs.id }
 
   func timeDidElapse(
+    on clock: Clock,
     from start: Duration,
     after previous: Duration?,
-    to current: Duration,
-    toward end: Duration
-  ) async { await timeDidElapse(start, previous, current, end) }
-
-  func hash(into hasher: inout Hasher) { id.hash(into: &hasher) }
+    towards end: Duration
+  ) async { await timeDidElapse(clock, start, previous, end) }
 }
 
-/// Closure whose signature matches that of the
-/// ``TimeLapseListener/timeDidElapse(from:after:to:toward:)`` callback.
-public typealias TimeDidElapse = (
-  _ start: Duration, _ previous: Duration?, _ current: Duration, _ end: Duration
-) async -> Void
+/// Closure which is executed whenever a ``Clock`` is started.
+typealias ClockDidStart = () -> Void
 
 /// `Identifiable` listener which is notified of starts of a ``Clock``.
 private final class ClockStartListener: Identifiable, Hashable {
@@ -458,7 +454,7 @@ private final class ClockStartListener: Identifiable, Hashable {
 
 extension BezierCurve {
   /// Cubic Bézier curve with P₀ = (0, 0), P₁ = (.25, .1), P₂ = (.25, .1), P₃ = (1, 1).
-  fileprivate static var eased = {
+  fileprivate static let eased: some BezierCurveProtocol = {
     let controller = Point(x: 0.25, y: 0.1)
     let start = Point.zero.controlled(by: controller)
     let end = Point(x: 1, y: 1).controlled(by: controller)
