@@ -40,21 +40,8 @@
 <hr />
 <ol>
   <li id="requirements-footnote-1">
-    <p><a href="https://github.com/project-deus/Deus/tree/main/QuantumMechanics"><code>QuantumMechanics</code></a> relies on <a href="https://github.com/swiftlang/swift/blob/d837d6052cf5403644e14956ee4376454ad633bd/docs/DifferentiableProgramming.md" target="_blank">differentiable programming</a> (for, e.g., calculating the Lagrangian of a configuration of a space), which is implemented by Swift in an unstable module. Differentiation is delegated to such module because <a href="https://github.com/swiftlang/swift/blob/d837d6052cf5403644e14956ee4376454ad633bd/docs/DifferentiableProgramming.md#history-of-differentiation-algorithms" target="_blank">its implementation is far from trivial</a>.</p>
+    <p><a href="https://github.com/project-deus/Deus/tree/main/QuantumMechanics"><code>QuantumMechanics</code></a> relies on <a href="https://github.com/swiftlang/swift/blob/d837d6052cf5403644e14956ee4376454ad633bd/docs/DifferentiableProgramming.md" target="_blank">differentiable programming</a> (for, e.g., calculating the Lagrangian of a phase of a space), which is implemented by Swift in an unstable module. Differentiation is delegated to such module because <a href="https://github.com/swiftlang/swift/blob/d837d6052cf5403644e14956ee4376454ad633bd/docs/DifferentiableProgramming.md#history-of-differentiation-algorithms" target="_blank">its implementation is far from trivial</a>.</p>
     <p>Only the latest major version of the toolchain can have its snapshot installed. To check which version is the latest major one, refer to the <a href="https://github.com/swiftlang/swift/releases" target="_blank">Releases page of Swift</a>. <a href="#requirements-footnote-1-ref">↩</a></p>
-  </li>
-</ol>
-<h2>Setup</h2>
-<ol>
-  <li><p>Install <a href="https://www.swift.org/install/macos/swiftly">Swiftly</a>, the version manager of Swift.</p></li>
-  <li>
-    <p>Install the snapshot of the toolchain of the latest major version of Swift (e.g., 6.1.2):</p>
-    <pre><code>swiftly install 6.1.2-snapshot</code></pre>
-  </li>
-  <li><p>Install <a href="https://developer.apple.com/download/all/?q=Xcode%2016.4">Xcode 16.4</a>.</p></li>
-  <li>
-    <p>Change the toolchain in Xcode to the installed one in Xcode → Toolchains:</p>
-    <img src="https://github.com/user-attachments/assets/66c6d6c9-a721-4c15-8047-432b0b7e48d6" />
   </li>
 </ol>
 <h2>Development process</h2>

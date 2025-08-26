@@ -1,31 +1,18 @@
 {
   "configurations" : [
     {
-      "id" : "C9F1D29C-7362-4022-BC80-73FEC98D0F7B",
-      "name" : "Test Scheme Action",
+      "id" : "24EB6EA7-7E35-4596-BEF3-20ADF36F2D55",
+      "name" : "Configuration 1",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-    "targetForVariableExpansion" : {
-      "containerPath" : "container:Deus.xcodeproj",
-      "identifier" : "4927F36B2DD25BC400E368D8",
-      "name" : "Deus"
-    }
+
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:Deus.xcodeproj",
-        "identifier" : "494EFC002DDF36B200C66063",
-        "name" : "RelativityKitTests"
-      }
-    },
-    {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Deus.xcodeproj",
         "identifier" : "4960AB4F2DDCE34E00EB1410",
@@ -33,19 +20,24 @@
       }
     },
     {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:Deus.xcodeproj",
-        "identifier" : "496813632E4643BA00B22450",
-        "name" : "ObservationKitTests"
-      }
-    },
-    {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Deus.xcodeproj",
         "identifier" : "49EF5D562DE20D36008AFB31",
         "name" : "QuantumMechanicsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Deus.xcodeproj",
+        "identifier" : "494EFC002DDF36B200C66063",
+        "name" : "RelativityKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Deus.xcodeproj",
+        "identifier" : "496813632E4643BA00B22450",
+        "name" : "ObservationKitTests"
       }
     }
   ],
